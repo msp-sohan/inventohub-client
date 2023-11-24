@@ -1,0 +1,41 @@
+.swiper {
+	width: 100%;
+	height: 550px;
+}
+
+@media screen and (max-width: 1280px) {
+	.swiper {
+		width: 100%;
+		height: 500px;
+	}
+}
+@media screen and (max-width: 769px) {
+	.swiper {
+		width: 100%;
+		height: 400px;
+	}
+}
+
+@media screen and (max-width: 426px) {
+	.swiper-button-prev::after {
+		display: none;
+	}
+	.swiper-button-next::after {
+		display: none;
+	}
+}
+
+/* 
+
+
+
+.swiper-slide {
+	background-position: center;
+	background-size: contain;
+}
+
+.swiper-slide img {
+	display: block;
+	width: 100%;
+	height: 100%;
+} */

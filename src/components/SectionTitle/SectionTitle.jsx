@@ -1,0 +1,14 @@
+
+const SectionTitle = ({ title, subtitle }) => {
+   return (
+      <header className="text-center py-16 text-white">
+         <p className="text-gray-400 my-3 flex items-center justify-center font-medium uppercase tracking-wider">-------<span className="px-3">{subtitle}</span>-------</p>
+         <div className="border-y-2 lg:w-[75%] mx-auto mt-3 border-yellow-400 py-px">
+            <h1 className="text-2xl md:text-3xl py-1 lg:text-[40px] font-bold text-black">{title}</h1>
+         </div>
+      </header>
+   );
+};
+
+export default SectionTitle;
+
