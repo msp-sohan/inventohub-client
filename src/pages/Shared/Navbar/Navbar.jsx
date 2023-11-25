@@ -17,12 +17,14 @@ import { Login, Person2 } from '@mui/icons-material';
 import useAuth from '../../../hooks/useAuth';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import Logo from '../../../components/Logo/Logo';
+import useRole from '../../../hooks/useRole';
 
 const userIcon = 'https://i.ibb.co/6HtdFTk/585e4bf3cb11b227491c339a.png'
 const shopLogo = 'https://i.ibb.co/PFhTpK2/Invebto-Hub-2.png'
 
 const Navbar = () => {
    const { user, logOut } = useAuth()
+   const { role } = useRole()
    const [anchorElNav, setAnchorElNav] = React.useState(null);
    const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -42,19 +44,24 @@ const Navbar = () => {
    };
 
    const navlinks = <>
-      <NavLink to="/">Home</NavLink>
+      <NavLink to="/" className={({ isActive }) => isActive ? "button" : "normal-button"}>
+         Home
+      </NavLink>
       {
-         user ? "" :
-            <>
-               <NavLink to="/login">Login</NavLink>
-               <NavLink to="/signup">Register</NavLink>
-            </>
+         !user && <>
+            <NavLink to="/login" className={({ isActive }) => isActive ? "button" : "normal-button"}>Login</NavLink>
+            <NavLink to="/signup" className={({ isActive }) => isActive ? "button" : "normal-button"}>Register</NavLink>
+         </>
       }
-      <button disabled={!user}><NavLink disabled={!user?.email} to="/create-store">Create-Store</NavLink></button>
+
       {
-         user ? <NavLink to="/dashboard">Dashboard</NavLink> : ""
+         (!role || role === 'user' || !user) && <button disabled={!user}><NavLink disabled={!user?.email} to="/create-store" className={({ isActive }) => isActive ? "button" : "normal-button"}>Create-Store</NavLink></button>
       }
-      <NavLink to="/watch-demo">Watch Demo</NavLink>
+
+      {
+         (role === "manager" || role === "admin") && <NavLink to="/dashboard" className={({ isActive }) => isActive ? "button" : "normal-button"}>Dashboard</NavLink>
+      }
+      <NavLink to="/watch-demo" className={({ isActive }) => isActive ? "button" : "normal-button"}>Watch Demo</NavLink>
    </>
 
    return (

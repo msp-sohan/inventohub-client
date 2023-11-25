@@ -7,6 +7,7 @@ import Testimonial from "../Components/Testimonial/Testimonial";
 import WhyChooseUs from "../Components/WhyChooseUs/WhyChooseUs";
 
 const Home = () => {
+
    return (
       <>
          <Helmat title="InventoHub || Home" />

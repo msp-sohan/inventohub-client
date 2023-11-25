@@ -11,6 +11,7 @@ import {
    updateProfile,
 } from 'firebase/auth'
 import app from '../firebase/firebase.config'
+import { clearCookie } from '../api/auth'
 
 
 
@@ -44,6 +45,7 @@ const AuthProvider = ({ children }) => {
 
    const logOut = async () => {
       setLoading(true)
+      await clearCookie()
       return signOut(auth)
    }
 

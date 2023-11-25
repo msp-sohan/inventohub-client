@@ -2,6 +2,71 @@
 @tailwind components;
 @tailwind utilities;
 
+.button {
+	display: flex;
+	padding: 0px 5px 5px 5px;
+	align-items: center;
+	justify-content: center;
+	line-height: 1;
+	text-decoration: none;
+	color: #ffffff;
+	font-size: 18px;
+	border-radius: 5px;
+	width: fit-content;
+	height: fit-content;
+	font-weight: bold;
+	border-bottom: 3px solid #fdfdfd;
+	transition: 0.3s;
+	background-color: #387ae8;
+}
+
+.button:hover {
+	box-shadow: 0 0 rgba(0, 0, 0, 0.4);
+	border-bottom-width: 2px;
+	transform: translateY(2px);
+}
+
+.normal-button {
+	display: flex;
+	padding: 0px 5px 5px 5px;
+	align-items: center;
+	justify-content: center;
+	line-height: 1;
+	text-decoration: none;
+	color: #ffffff;
+	font-size: 18px;
+	border-radius: 5px;
+	width: fit-content;
+	height: fit-content;
+	font-weight: bold;
+	transition: 0.3s;
+	background-color: #387ae8;
+}
+
+.normal-button:hover {
+	box-shadow: 0 0 rgba(0, 0, 0, 0.4);
+	border-bottom-width: 2px;
+	transform: translateY(2px);
+}
+
+.video-responsive {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
+	padding-bottom: 56.25%;
+	position: relative;
+	height: 0;
+}
+
+.video-responsive iframe {
+	left: 0;
+	top: 0;
+	height: 50%;
+	width: 50%;
+	position: absolute;
+}
+
 /* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;

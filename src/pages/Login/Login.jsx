@@ -15,6 +15,7 @@ import { TbFidgetSpinner } from 'react-icons/tb'
 import { useState } from "react";
 import { FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { getToken } from "../../api/auth";
 
 export default function Login() {
    const { signIn, loading } = useAuth()
@@ -35,16 +36,16 @@ export default function Login() {
 
          // User Registration
          const result = await signIn(email, password)
-         console.log(result)
 
          // get token
-         // await getToken(result?.user?.email)
+         await getToken(result?.user?.email)
          navigate(from, { replace: true })
          toast.success('Login Successfull')
       } catch (error) {
+         console.log(error)
          toast.error(error.message)
       }
-   };
+   }
 
    return (
       <Container component="main" maxWidth="sm">

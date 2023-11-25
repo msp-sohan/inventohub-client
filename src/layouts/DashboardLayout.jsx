@@ -14,12 +14,17 @@ import DashboardNavbar from '../components/Dashboard/Navbar/DashboardNavbar';
 import MenuItem from '../components/Dashboard/Sidebar/MenuItem';
 import AdminMenu from '../components/Dashboard/Menu/AdminMenu';
 import Copyright from '../pages/Shared/Footer/Copyright';
+import useRole from '../hooks/useRole';
+import ManagerMenu from '../components/Dashboard/Menu/ManagerMenu';
+import Loader from '../components/Shared/Loader';
 
 const drawerWidth = 240;
 const shopLogo = 'https://i.ibb.co/PFhTpK2/Invebto-Hub-2.png'
 
 const DashboardLayout = (props) => {
-   const { logOut } = useAuth()
+   const { logOut, loading } = useAuth()
+   const { role } = useRole()
+   console.log(role)
    const { window } = props;
    const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -33,7 +38,8 @@ const DashboardLayout = (props) => {
          <img src={shopLogo} alt="" className='w-[80%]' />
          <Divider />
          <List sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
-            <AdminMenu />
+            {role === 'manager' && <ManagerMenu />}
+            {role === 'admin' && <AdminMenu />}
          </List>
          <Divider />
          <div style={{ flexGrow: 1 }}>
@@ -54,6 +60,9 @@ const DashboardLayout = (props) => {
    // Remove this const when copying and pasting into your project.
    const container = window !== undefined ? () => window().document.body : undefined;
 
+   if (loading) {
+      return <Loader />
+   }
    return (
       <Box sx={{ display: 'flex' }}>
          <CssBaseline />

@@ -3,7 +3,7 @@ import axiosSecure from '.';
 export const saveUser = async (user) => {
 	const currentUser = {
 		email: user.email,
-		role: 'guest',
+		role: 'user',
 		status: 'Verified',
 	};
 	const { data } = await axiosSecure.put(`/users/${user?.email}`, currentUser);
@@ -26,6 +26,7 @@ export const clearCookie = async () => {
 // get user roll
 export const getRole = async (email) => {
 	const { data } = await axiosSecure(`/user/${email}`);
+	console.log(data);
 	return data?.role;
 };
 

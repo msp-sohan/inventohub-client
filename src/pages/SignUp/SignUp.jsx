@@ -14,16 +14,13 @@ import { useState } from "react";
 import { imageUpload } from "../../api/utilities";
 import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
+import { getToken, saveUser } from "../../api/auth";
 
 const SignUp = () => {
    const { createUser, updateUserProfile } = useAuth()
    const navigate = useNavigate()
    const [showPassword, setShowPassword] = useState(false);
    const handleClickShowPassword = () => setShowPassword((show) => !show);
-   // const handleMouseDownPassword = (event) => {
-   //    event.preventDefault();
-   //    console.log(event.target.password.value)
-   // };
 
    const handleSubmit = async (event) => {
       event.preventDefault();
@@ -56,14 +53,13 @@ const SignUp = () => {
 
          // Update username and password
          await updateUserProfile(name, imageData?.data?.display_url)
-         console.log(result)
+
          //  save user Data in database
-         // const dbResponse = await saveUser(result?.user)
-         // console.log(dbResponse)
-         //  result.user.email
+         const dbResponse = await saveUser(result?.user)
+         console.log(dbResponse)
 
          // get token
-         // await getToken(result?.user?.email)
+         await getToken(result?.user?.email)
          navigate('/')
          toast.success('Sign up Successfull')
       } catch (error) {

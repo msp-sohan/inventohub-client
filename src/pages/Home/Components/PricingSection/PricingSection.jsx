@@ -4,7 +4,7 @@ const PricingSection = () => {
    return (
       <section className="flex items-center shadow-[0_3px_10px_rgb(0,0,0,0.2)] shadow-gray-500 font-poppins dark:bg-gray-900 ">
          <div className="justify-center flex-1 max-w-6xl px-4 py-4 mx-auto lg:py-0 md:px-6">
-            <SectionTitle title="Start your Business Plan" subtitle="Choose Plan" />
+            <SectionTitle title="Start your Business Plan" subtitle="Choose Plan" width="80%" />
             <div className="flex flex-wrap justify-center -mx-3">
                <div data-aos="flip-right" className="w-full px-3 mb-6 md:w-1/2 lg:w-1/3">
                   <div className="flex flex-col items-center rounded-md shadow-md dark:bg-gray-800 bg-gray-50">

@@ -8,9 +8,12 @@ import DashboardLayout from '../layouts/DashboardLayout'
 import WatchDemo from '../pages/WatchDemo/WatchDemo'
 import CreateStore from '../pages/CreateStore/CreateStore'
 import PrivateRoute from './PrivateRoute'
-import SaleSummary from '../pages/Dashboard/Admin/SaleSummary'
+// import SaleSummary from '../pages/Dashboard/Admin/SaleSummary'
 import ManageShops from '../pages/Dashboard/Admin/ManageShops'
 import ManageUsers from '../pages/Dashboard/Admin/ManageUsers'
+import ManageProduct from '../pages/Dashboard/ShopManager/ManageProduct'
+import AddProduct from '../pages/Dashboard/ShopManager/AddProduct'
+import SalesCollection from '../pages/Dashboard/ShopManager/SalesCollection'
 
 export const router = createBrowserRouter([
    {
@@ -44,10 +47,10 @@ export const router = createBrowserRouter([
       path: '/dashboard',
       element: <PrivateRoute><DashboardLayout /></PrivateRoute>,
       children: [
-         {
-            index: true,
-            element: <SaleSummary></SaleSummary>
-         },
+         // {
+         //    index: true,
+         //    element: <SaleSummary></SaleSummary>
+         // },
          {
             path: 'manage-shops',
             element: <ManageShops></ManageShops>
@@ -56,6 +59,18 @@ export const router = createBrowserRouter([
             path: 'manage-users',
             element: <ManageUsers></ManageUsers>
          },
+         {
+            path: 'manage-product',
+            element: <ManageProduct></ManageProduct>
+         },
+         {
+            path: 'add-product',
+            element: <AddProduct></AddProduct>
+         },
+         {
+            path: 'sales-collection',
+            element: <SalesCollection></SalesCollection>
+         }
 
       ]
    }
