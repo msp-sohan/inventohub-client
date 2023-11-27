@@ -23,7 +23,7 @@ const userIcon = 'https://i.ibb.co/6HtdFTk/585e4bf3cb11b227491c339a.png'
 const shopLogo = 'https://i.ibb.co/PFhTpK2/Invebto-Hub-2.png'
 
 const Navbar = () => {
-   const { user, logOut } = useAuth()
+   const { user, logOut } = useAuth({})
    const { role } = useRole()
    const [anchorElNav, setAnchorElNav] = React.useState(null);
    const [anchorElUser, setAnchorElUser] = React.useState(null);

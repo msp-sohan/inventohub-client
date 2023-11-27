@@ -8,12 +8,17 @@ import DashboardLayout from '../layouts/DashboardLayout'
 import WatchDemo from '../pages/WatchDemo/WatchDemo'
 import CreateStore from '../pages/CreateStore/CreateStore'
 import PrivateRoute from './PrivateRoute'
-// import SaleSummary from '../pages/Dashboard/Admin/SaleSummary'
+import SaleSummary from '../pages/Dashboard/Admin/SaleSummary'
 import ManageShops from '../pages/Dashboard/Admin/ManageShops'
-import ManageUsers from '../pages/Dashboard/Admin/ManageUsers'
+// import ManageUsers from '../pages/Dashboard/Admin/ManageUsers'
 import ManageProduct from '../pages/Dashboard/ShopManager/ManageProduct'
 import AddProduct from '../pages/Dashboard/ShopManager/AddProduct'
 import SalesCollection from '../pages/Dashboard/ShopManager/SalesCollection'
+import CheckOut from '../pages/Dashboard/ShopManager/CheckOut'
+import Subscription from '../pages/Dashboard/ShopManager/Subscription'
+import SalesSummary from '../pages/Dashboard/ShopManager/SalesSummary'
+import AdminRoute from './AdminRoute'
+import ManagerRoute from './ManagerRoute'
 
 export const router = createBrowserRouter([
    {
@@ -47,29 +52,45 @@ export const router = createBrowserRouter([
       path: '/dashboard',
       element: <PrivateRoute><DashboardLayout /></PrivateRoute>,
       children: [
-         // {
-         //    index: true,
-         //    element: <SaleSummary></SaleSummary>
-         // },
+         // Admin Routes
+         {
+            path: 'salesummary',
+            element: <PrivateRoute><AdminRoute><SaleSummary></SaleSummary></AdminRoute></PrivateRoute>
+         },
          {
             path: 'manage-shops',
-            element: <ManageShops></ManageShops>
+            element: <PrivateRoute><AdminRoute><ManageShops></ManageShops></AdminRoute></PrivateRoute>
          },
-         {
-            path: 'manage-users',
-            element: <ManageUsers></ManageUsers>
-         },
+         // {
+         //    path: 'manage-users',
+         //    element: <ManageUsers></ManageUsers>
+         // },
+         // Manager Routes
          {
             path: 'manage-product',
-            element: <ManageProduct></ManageProduct>
+            element: <PrivateRoute><ManagerRoute><ManageProduct></ManageProduct></ManagerRoute></PrivateRoute>
          },
+
          {
             path: 'add-product',
-            element: <AddProduct></AddProduct>
+            element: <PrivateRoute><ManagerRoute><AddProduct></AddProduct></ManagerRoute></PrivateRoute>
          },
          {
             path: 'sales-collection',
-            element: <SalesCollection></SalesCollection>
+            element: <PrivateRoute><ManagerRoute><SalesCollection></SalesCollection></ManagerRoute></PrivateRoute>
+         },
+         {
+            path: 'checkout',
+            element: <PrivateRoute><ManagerRoute><CheckOut></CheckOut></ManagerRoute></PrivateRoute>
+         },
+         {
+            path: 'subscription',
+            element: <PrivateRoute><ManagerRoute><Subscription></Subscription></ManagerRoute></PrivateRoute>
+         },
+         {
+            path: "sale-summary",
+            element: <PrivateRoute><ManagerRoute><SalesSummary></SalesSummary></ManagerRoute></PrivateRoute>,
+            loader: () => fetch('http://localhost:5000/sales')
          }
 
       ]

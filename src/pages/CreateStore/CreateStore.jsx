@@ -8,6 +8,7 @@ import toast from 'react-hot-toast';
 import { imageUpload } from '../../api/utilities';
 import { useNavigate } from 'react-router-dom';
 import { addShop } from '../../api/shop';
+import Helmat from '../../components/Helmat/Helmat';
 
 const CreateStore = () => {
    const { user } = useAuth()
@@ -50,6 +51,7 @@ const CreateStore = () => {
 
    return (
       <React.Fragment>
+         <Helmat title="InventoHub | Create Shop" />
          <SectionTitle title="Create a Shop" subtitle="Stats your Journey" width="80%" />
 
          <Container maxWidth="md" sx={{ backgroundColor: '#F1EFEF', mb: 6 }}>

@@ -17,6 +17,7 @@ import Copyright from '../pages/Shared/Footer/Copyright';
 import useRole from '../hooks/useRole';
 import ManagerMenu from '../components/Dashboard/Menu/ManagerMenu';
 import Loader from '../components/Shared/Loader';
+import Helmat from '../components/Helmat/Helmat';
 
 const drawerWidth = 240;
 const shopLogo = 'https://i.ibb.co/PFhTpK2/Invebto-Hub-2.png'
@@ -24,7 +25,6 @@ const shopLogo = 'https://i.ibb.co/PFhTpK2/Invebto-Hub-2.png'
 const DashboardLayout = (props) => {
    const { logOut, loading } = useAuth()
    const { role } = useRole()
-   console.log(role)
    const { window } = props;
    const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -64,39 +64,42 @@ const DashboardLayout = (props) => {
       return <Loader />
    }
    return (
-      <Box sx={{ display: 'flex' }}>
-         <CssBaseline />
-         <AppBar position="fixed" sx={{ width: "full" }}>
-            <DashboardNavbar handleDrawerToggle={handleDrawerToggle} />
-         </AppBar>
-         <Box component="nav" sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }} aria-label="mailbox folders" >
-            {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
-            <Drawer
-               container={container}
-               variant="temporary"
-               open={mobileOpen}
-               onClose={handleDrawerToggle}
-               ModalProps={{ keepMounted: true }}
-               sx={{ display: { xs: 'block', sm: 'none' }, '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth } }}>
-               {/* Small Device */}
-               {drawer}
-            </Drawer>
-            <Drawer
-               variant="persistent"
-               open
-               sx={{ display: { xs: 'none', sm: 'block' }, '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth } }} >
-               {/* Large Devie */}
-               {drawer}
-            </Drawer>
+      <>
+         <Helmat title="InventoHub | Dashboard" />
+         <Box sx={{ display: 'flex' }}>
+            <CssBaseline />
+            <AppBar position="fixed" sx={{ width: "full" }}>
+               <DashboardNavbar handleDrawerToggle={handleDrawerToggle} />
+            </AppBar>
+            <Box component="nav" sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }} aria-label="mailbox folders" >
+               {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
+               <Drawer
+                  container={container}
+                  variant="temporary"
+                  open={mobileOpen}
+                  onClose={handleDrawerToggle}
+                  ModalProps={{ keepMounted: true }}
+                  sx={{ display: { xs: 'block', sm: 'none' }, '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth } }}>
+                  {/* Small Device */}
+                  {drawer}
+               </Drawer>
+               <Drawer
+                  variant="persistent"
+                  open
+                  sx={{ display: { xs: 'none', sm: 'block' }, '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth } }} >
+                  {/* Large Devie */}
+                  {drawer}
+               </Drawer>
+            </Box>
+            <Box component="main" sx={{ flexGrow: 1, width: { sm: '100%', md: `calc(100% - ${drawerWidth}px)` } }} >
+               <Toolbar />
+               <div className='min-h-[calc(100vh-16vh)] p-6'>
+                  <Outlet />
+               </div>
+               <Copyright></Copyright>
+            </Box>
          </Box>
-         <Box component="main" sx={{ flexGrow: 1, width: { sm: '100%', md: `calc(100% - ${drawerWidth}px)` } }} >
-            <Toolbar />
-            <div className='min-h-[calc(100vh-16vh)] p-6'>
-               <Outlet />
-            </div>
-            <Copyright></Copyright>
-         </Box>
-      </Box>
+      </>
    );
 }
 

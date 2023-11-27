@@ -33,10 +33,10 @@ const DashboardNavbar = ({ handleDrawerToggle }) => {
    };
 
    return (
-      <AppBar sx={{ backgroundColor: '#001B79', position: 'absolute' }}>
+      <AppBar sx={{ backgroundColor: '', zIndex: '0', position: 'absolute' }}>
          <Container maxWidth={'xl'}>
             <Toolbar disableGutters sx={{ display: 'flex', justifyContent: 'end' }}>
-               <Box sx={{ flexGrow: 0 }}>
+               <Box sx={{ flexGrow: 1 }}>
                   <Toolbar>
                      <IconButton
                         color="inherit"

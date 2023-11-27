@@ -1,8 +1,10 @@
 import axiosSecure from '.';
 // save user data in database
-export const saveUser = async (user) => {
+export const saveUser = async (user, name, image) => {
 	const currentUser = {
-		email: user.email,
+		name: user?.displayName || name,
+		email: user?.email,
+		image: user?.photoURL || image,
 		role: 'user',
 		status: 'Verified',
 	};
@@ -21,13 +23,6 @@ export const getToken = async (email) => {
 export const clearCookie = async () => {
 	const { data } = await axiosSecure.get('/logout');
 	return data;
-};
-
-// get user roll
-export const getRole = async (email) => {
-	const { data } = await axiosSecure(`/user/${email}`);
-	console.log(data);
-	return data?.role;
 };
 
 // get all users

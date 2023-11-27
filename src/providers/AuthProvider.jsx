@@ -13,8 +13,6 @@ import {
 import app from '../firebase/firebase.config'
 import { clearCookie } from '../api/auth'
 
-
-
 export const AuthContext = createContext(null)
 const auth = getAuth(app)
 const googleProvider = new GoogleAuthProvider()

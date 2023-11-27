@@ -14,7 +14,6 @@ const Home = () => {
          <div className="mt-2">
             <Banner />
          </div>
-
          <div className="my-12">
             <WhyChooseUs />
          </div>

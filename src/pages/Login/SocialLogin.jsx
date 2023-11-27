@@ -4,10 +4,13 @@ import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { getToken, saveUser } from "../../api/auth";
+import useRole from "../../hooks/useRole";
 
 const SocialLogin = () => {
-   const { signInWithGoogle } = useAuth()
+   const { user, signInWithGoogle } = useAuth()
    const navigate = useNavigate()
+
+   const { role } = useRole(user?.email)
 
    const handleGoogleSignIn = async () => {
       try {
@@ -15,13 +18,20 @@ const SocialLogin = () => {
          const result = await signInWithGoogle()
 
          //  save user Data in database
-         const dbResponse = await saveUser(result?.user)
-         console.log(dbResponse)
+         await saveUser(result?.user)
 
          // get token
          await getToken(result?.user?.email)
-         navigate('/')
-         toast.success('Sign up Successfull')
+
+         if (role === 'user') {
+            navigate('/create-store')
+         } else if (role === 'manager' || role === 'admin') {
+            navigate('/dashboard')
+         } else {
+            navigate('/')
+         }
+
+         toast.success('Sign In Successfull')
       } catch (error) {
          console.log(error)
          toast.error(error.message)
