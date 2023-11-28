@@ -3,7 +3,6 @@ import { useQuery } from "@tanstack/react-query";
 import useAxios from "./useAxios";
 
 const useAllSales = ({ page = 0, rowsPerPage = 0 }) => {
-   console.log(page, rowsPerPage)
    const axios = useAxios();
    const { data, isLoading } = useQuery({
       queryKey: ['allSalesd', page, rowsPerPage],

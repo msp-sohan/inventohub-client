@@ -51,11 +51,10 @@ export default function UpdateModal({ open, handleClose, initialProduct }) {
             productImage: image_url?.data?.display_url
          }
 
-         const result = await updateProduct({ productId, updatedProductData })
-         console.log(result)
+         await updateProduct({ productId, updatedProductData })
+
          toast.success('Product Updated Successfully')
       } catch (error) {
-         console.log(error?.response?.data)
          toast.error(error.message)
       } finally {
          // Reset the form

@@ -7,7 +7,6 @@ export const createPaymentIntent = async (price) => {
 
 // update product limit after payment in db
 export const updatelimit = async (email, paymentInfo) => {
-	console.log(email, paymentInfo);
 	const { data } = await axiosSecure.patch(`/shops/limit/${email}`, paymentInfo);
 	return data;
 };

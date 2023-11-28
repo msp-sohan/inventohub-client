@@ -10,6 +10,5 @@ export const addShop = async (shopData) => {
 // Get All Shop Data
 export const getAllShops = async () => {
 	const { data } = await axiosSecure.get('/shops');
-	console.log(data);
 	return data;
 };

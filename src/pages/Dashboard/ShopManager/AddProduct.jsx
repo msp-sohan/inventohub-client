@@ -39,12 +39,11 @@ const AddProduct = () => {
       }
 
       try {
-         const result = await addProduct(productData)
-         console.log(result)
+         await addProduct(productData)
+
          toast.success('Product Added Successfully')
          navigate('/dashboard/manage-product')
       } catch (error) {
-         console.log(error?.response?.data)
          toast.error(error.message)
       }
    };

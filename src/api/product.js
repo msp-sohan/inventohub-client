@@ -21,7 +21,6 @@ export const updateProduct = async ({ productId, updatedProductData }) => {
 // Delete a Product
 
 export const deleteProduct = async (productId) => {
-	console.log(productId);
 	const { data } = await axiosSecure.delete(`/product/${productId}`);
 	return data;
 };

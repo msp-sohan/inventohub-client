@@ -33,7 +33,6 @@ const SocialLogin = () => {
 
          toast.success('Sign In Successfull')
       } catch (error) {
-         console.log(error)
          toast.error(error.message)
       }
    }

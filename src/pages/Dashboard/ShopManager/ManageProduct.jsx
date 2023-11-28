@@ -20,7 +20,6 @@ const ManageProduct = () => {
    const handleClose = () => setOpen(false);
 
    const handleDeleteProduct = (id) => {
-      console.log(id)
       Swal.fire({
          title: "Are you sure?",
          text: "You won't be able to revert this!",
@@ -33,16 +32,17 @@ const ManageProduct = () => {
          if (result.isConfirmed) {
             try {
                const data = await deleteProduct(id)
-               console.log(data)
+               if (data) {
+                  Swal.fire({
+                     title: "Deleted!",
+                     text: "Your file has been deleted.",
+                     icon: "success"
+                  });
+               }
                refetch()
             } catch (error) {
                toast.error(error.message)
             }
-            // Swal.fire({
-            //    title: "Deleted!",
-            //    text: "Your file has been deleted.",
-            //    icon: "success"
-            // });
          }
       });
    }

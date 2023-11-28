@@ -17,7 +17,6 @@ const CheckOut = () => {
    const handleAddSales = async (item) => {
       try {
          const result = await addToSale(item)
-         console.log(result)
          if (result) {
             Swal.fire({
                position: "top-end",
@@ -29,7 +28,6 @@ const CheckOut = () => {
             refetch()
          }
       } catch (error) {
-         console.log(error.message)
          toast.error(error.message)
       }
    }

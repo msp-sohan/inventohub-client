@@ -7,7 +7,6 @@ import toast from 'react-hot-toast';
 import { TbFidgetSpinner } from 'react-icons/tb';
 
 const CheckoutForm = ({ closeModal, paymentInfo }) => {
-   console.log(paymentInfo)
    const stripe = useStripe();
    const elements = useElements();
    const [clientSecret, setClientSecret] = useState('')
@@ -21,7 +20,6 @@ const CheckoutForm = ({ closeModal, paymentInfo }) => {
       if (paymentInfo.price > 0) {
          createPaymentIntent({ price: paymentInfo.price })
             .then(data => {
-               console.log(data.clientSecret)
                setClientSecret(data.clientSecret)
             })
       }
@@ -66,7 +64,6 @@ const CheckoutForm = ({ closeModal, paymentInfo }) => {
          })
 
       if (confirmError) {
-         console.log(confirmError)
          toast.error(confirmError.message)
       } else {
          console.log('payment intent', paymentIntent)
@@ -77,7 +74,6 @@ const CheckoutForm = ({ closeModal, paymentInfo }) => {
                toast.success(text)
                closeModal()
             } catch (error) {
-               console.log(error)
                toast.error(error.message)
             } finally {
                setProcessing(false)

@@ -25,7 +25,6 @@ export default function Login() {
    const location = useLocation()
    const from = location?.state?.from?.pathname || '/'
    const { role } = useRole()
-   console.log(role)
 
    const [showPassword, setShowPassword] = useState(false);
    const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -54,7 +53,6 @@ export default function Login() {
 
          toast.success('Login Successfull')
       } catch (error) {
-         console.log(error)
          toast.error(error.message)
       }
    }

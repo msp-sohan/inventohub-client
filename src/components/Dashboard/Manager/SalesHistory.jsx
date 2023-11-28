@@ -4,7 +4,6 @@ import useAllSales from "../../../hooks/useAllSales";
 
 const SalesHistory = () => {
    const [page, setPage] = useState(0);
-   console.log(page)
    const [rowsPerPage, setRowsPerPage] = useState(10);
 
    const { data } = useAllSales({ page, rowsPerPage })

@@ -44,7 +44,6 @@ const CreateStore = () => {
          navigate('/')
          toast.success('Create Shop Successfully')
       } catch (error) {
-         console.log(error)
          toast.error(error.message)
       }
    };
