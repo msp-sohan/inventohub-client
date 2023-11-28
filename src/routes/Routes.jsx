@@ -90,7 +90,6 @@ export const router = createBrowserRouter([
          {
             path: "sale-summary",
             element: <PrivateRoute><ManagerRoute><SalesSummary></SalesSummary></ManagerRoute></PrivateRoute>,
-            loader: () => fetch('http://localhost:5000/sales')
          }
 
       ]
