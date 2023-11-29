@@ -1,13 +1,13 @@
 
 import { useQuery } from "@tanstack/react-query";
-import useAxios from "./useAxios";
+import useAxiosSecure from "./useAxiosSecure";
 
-const useAllUsers = () => {
-   const axios = useAxios();
+const useAllUsers = ({ page = 0, rowsPerPage = 10 }) => {
+   const axios = useAxiosSecure();
    const { data, isLoading } = useQuery({
-      queryKey: ['allUsers'],
+      queryKey: ['allUsers', page, rowsPerPage,],
       queryFn: async () => {
-         const response = await axios.get('/users');
+         const response = await axios.get(`/users?page=${page}&limit=${rowsPerPage}`);
          return response.data;
       }
    })

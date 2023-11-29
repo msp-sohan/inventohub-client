@@ -1,10 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "./useAuth";
-import useAxios from "./useAxios";
+import useAxiosSecure from "./useAxiosSecure";
 
 const useCheckout = () => {
    const { user } = useAuth()
-   const axios = useAxios()
+   const axios = useAxiosSecure()
    const { data, isLoading, refetch } = useQuery({
       queryKey: ['checkout', user?.email],
       queryFn: async () => {

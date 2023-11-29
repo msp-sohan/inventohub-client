@@ -2,6 +2,7 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import { useRef } from 'react';
 import emailjs from '@emailjs/browser';
+import Swal from 'sweetalert2';
 
 const style = {
    position: 'absolute',
@@ -23,6 +24,13 @@ export default function NoticeModal({ open, handleClose, singleShop }) {
       emailjs.sendForm('service_sohan', 'template_sohan', form.current, 'SUpNFkY5B48OoqbKg')
          .then((result) => {
             console.log(result.text);
+            Swal.fire({
+               position: "center",
+               icon: "success",
+               title: "Notice Send Successfully",
+               showConfirmButton: false,
+               timer: 1500
+            });
          }, (error) => {
             console.log(error.text);
          });

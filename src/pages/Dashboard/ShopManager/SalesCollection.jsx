@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react';
 import { addToCheckOut } from '../../../api/checkout';
 import Loader from '../../../components/Shared/Loader';
 import Helmat from '../../../components/Helmat/Helmat';
+import toast from 'react-hot-toast';
 
 const SalesCollection = () => {
    const { data, isLoading } = useGetProducts();
@@ -26,9 +27,18 @@ const SalesCollection = () => {
    };
 
    const handleAddToCheckOut = async (product) => {
+      const { _id: productId, productName, productImage, productQuantity, productCost, discount, sellingPrice, shopId, shopName, userEmail } = product;
       const checkOutData = {
-         ...product,
-         productId: product._id
+         productId,
+         productName,
+         productImage,
+         productQuantity,
+         productCost,
+         discount,
+         sellingPrice,
+         shopId,
+         shopName,
+         userEmail
       };
 
       try {
@@ -41,7 +51,7 @@ const SalesCollection = () => {
             timer: 1500,
          });
       } catch (error) {
-         console.log(error.message);
+         toast.error(error.message);
       }
    };
 
@@ -90,7 +100,7 @@ const SalesCollection = () => {
                         <tbody key={product._id} className="text-gray-500 ">
                            <tr className=''>
                               <td className="border-b  border-gray-200 bg-white px-3 py-3 text-sm">
-                                 <p className="whitespace-no-wrap">id: {product?._id}</p>
+                                 <p className="whitespace-no-wrap">{product?._id}</p>
                               </td>
                               <td className="border-b border-gray-200 bg-white px-3 py-3 text-sm">
                                  <div className="flex items-center">

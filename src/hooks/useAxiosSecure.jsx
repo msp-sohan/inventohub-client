@@ -1,6 +1,7 @@
 import axios from 'axios';
-import { clearCookie } from '../api/auth';
-
+import { useNavigate } from 'react-router-dom';
+import useAuth from './useAuth';
+import { useEffect } from 'react';
 
 const axiosSecure = axios.create({
    baseURL: import.meta.env.VITE_API_URL,
@@ -8,19 +9,34 @@ const axiosSecure = axios.create({
 });
 
 const useAxiosSecure = () => {
+   const { logOut } = useAuth();
+   const navigate = useNavigate();
 
-   //  Intercept response and check for unauthorized response
-   axiosSecure.interceptors.response.use(
-      (response) => response,
-      async (error) => {
-         console.log('Error in the inteceptor', error.response);
-         if (error.response && (error.response.status === 401 || error.response.status === 403)) {
-            await clearCookie();
-            window.location.replace('/login');
+   useEffect(() => {
+      axiosSecure.interceptors.response.use(
+         (response) => {
+            return response;
+         },
+         (error) => {
+            console.log('Error Tracked in the Interceptor', error.response);
+            if (error.response.status === 401) {
+               console.log('Logout the user');
+               logOut()
+                  .then(() => {
+                     navigate('/login');
+                  })
+                  .catch((error) => console.log(error));
+            } else if (error.response.status === 403) {
+               console.log('Navigate to /forbidden');
+               navigate('/forbidden');
+            }
+            return Promise.reject(error);
          }
-         return Promise.reject(error);
-      },
-   );
+      );
+   }, [logOut, navigate]);
+
    return axiosSecure;
 };
+
 export default useAxiosSecure;
+

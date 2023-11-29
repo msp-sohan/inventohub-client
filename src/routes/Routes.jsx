@@ -19,6 +19,9 @@ import Subscription from '../pages/Dashboard/ShopManager/Subscription'
 import SalesSummary from '../pages/Dashboard/ShopManager/SalesSummary'
 import AdminRoute from './AdminRoute'
 import ManagerRoute from './ManagerRoute'
+import Forbidden from '../pages/Forbidden/Forbidden'
+import ProtectedRoute from './ProtectedRoute'
+import DashboardHome from '../pages/Dashboard/DashboardHome/DashboardHome'
 
 export const router = createBrowserRouter([
    {
@@ -49,9 +52,17 @@ export const router = createBrowserRouter([
       ],
    },
    {
+      path: '/forbidden',
+      element: <Forbidden></Forbidden>
+   },
+   {
       path: '/dashboard',
-      element: <PrivateRoute><DashboardLayout /></PrivateRoute>,
+      element: <ProtectedRoute><DashboardLayout /></ProtectedRoute>,
       children: [
+         {
+            index: true,
+            element: <DashboardHome />
+         },
          // Admin Routes
          {
             path: 'salesummary',
@@ -61,14 +72,11 @@ export const router = createBrowserRouter([
             path: 'manage-shops',
             element: <PrivateRoute><AdminRoute><ManageShops></ManageShops></AdminRoute></PrivateRoute>
          },
-         // {
-         //    path: 'manage-users',
-         //    element: <ManageUsers></ManageUsers>
-         // },
+
          // Manager Routes
          {
             path: 'manage-product',
-            element: <PrivateRoute><ManagerRoute><ManageProduct></ManageProduct></ManagerRoute></PrivateRoute>
+            element: <ProtectedRoute><ManagerRoute><ManageProduct></ManageProduct></ManagerRoute></ProtectedRoute>
          },
 
          {

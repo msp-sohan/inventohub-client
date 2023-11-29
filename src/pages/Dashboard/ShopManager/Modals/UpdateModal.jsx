@@ -2,11 +2,12 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { Button, Grid, TextField } from '@mui/material';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import useGetProducts from '../../../../hooks/useGetProducts';
 import { updateProduct } from '../../../../api/product';
 import toast from 'react-hot-toast';
 import { imageUpload } from '../../../../api/utilities';
+import { TbFidgetSpinner } from 'react-icons/tb';
 
 const style = {
    position: 'absolute',
@@ -22,6 +23,7 @@ const style = {
 
 export default function UpdateModal({ open, handleClose, initialProduct }) {
    const formRef = useRef(null);
+   const [loading, setLoading] = useState(false)
    const { refetch } = useGetProducts()
    const productId = initialProduct?._id
 
@@ -32,19 +34,20 @@ export default function UpdateModal({ open, handleClose, initialProduct }) {
       const image = data.get('productImage')
       const productQuantity = parseInt(data.get('productQuantity'))
       const productLocation = data.get('productLocation')
-      const productionCost = parseInt(data.get('productionCost'))
+      const productCost = parseInt(data.get('productionCost'))
       const profitMargin = parseInt(data.get('profitMargin'))
       const discount = parseInt(data.get('discount'))
       const productDescription = data.get('productDescription')
 
       try {
+         setLoading(true)
          const image_url = await imageUpload(image)
 
          const updatedProductData = {
             productName,
             productQuantity,
             productLocation,
-            productionCost,
+            productCost,
             profitMargin,
             discount,
             productDescription,
@@ -52,8 +55,8 @@ export default function UpdateModal({ open, handleClose, initialProduct }) {
          }
 
          await updateProduct({ productId, updatedProductData })
-
          toast.success('Product Updated Successfully')
+         setLoading(false)
       } catch (error) {
          toast.error(error.message)
       } finally {
@@ -61,6 +64,7 @@ export default function UpdateModal({ open, handleClose, initialProduct }) {
          formRef.current.reset();
          refetch()
          handleClose()
+         setLoading(false)
       }
    }
 
@@ -127,7 +131,7 @@ export default function UpdateModal({ open, handleClose, initialProduct }) {
                               required
                               fullWidth
                               focused
-                              defaultValue={initialProduct?.productionCost}
+                              defaultValue={initialProduct?.productCost}
                               type="number"
                               label="Buying Price"
                            />
@@ -175,7 +179,7 @@ export default function UpdateModal({ open, handleClose, initialProduct }) {
                         variant="contained"
                         sx={{ mt: 3, mb: 2, fontSize: 20 }}
                      >
-                        Update Product
+                        {loading ? <TbFidgetSpinner className='animate-spin mx-auto' /> : "Update Product"}
                      </Button>
                   </Box>
                </Box>

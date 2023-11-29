@@ -2,15 +2,17 @@ import BorderColorTwoToneIcon from '@mui/icons-material/BorderColorTwoTone';
 import useGetProducts from "../../../hooks/useGetProducts";
 import { Delete } from '@mui/icons-material';
 import UpdateModal from './Modals/UpdateModal';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import toast from 'react-hot-toast';
 import { deleteProduct } from '../../../api/product';
 import Helmat from '../../../components/Helmat/Helmat';
+import EmptyAddProduct from '../../EmptyPage/EmptyAddProduct';
 
 const ManageProduct = () => {
-   const { data: products = [], refetch } = useGetProducts();
+   const { data = [], refetch, isLoading } = useGetProducts();
+   const [products, setProducts] = useState([]);
    const [open, setOpen] = useState(false);
    const [selectedProduct, setSelectedProduct] = useState(null);
    const handleOpen = (product) => {
@@ -19,10 +21,24 @@ const ManageProduct = () => {
    };
    const handleClose = () => setOpen(false);
 
+   useEffect(() => {
+      if (!isLoading) {
+         setProducts(data);
+      }
+   }, [isLoading, data]);
+
+   const handleSearch = (event) => {
+      event.preventDefault();
+      const form = event.target;
+      const search = form.value;
+      const filter = data.filter((item) => String(item.productName).toLowerCase().includes(String(search).toLowerCase()));
+      setProducts(filter);
+   };
+
    const handleDeleteProduct = (id) => {
       Swal.fire({
          title: "Are you sure?",
-         text: "You won't be able to revert this!",
+         text: `You won't be able to Get Back This Product! id: ${id}`,
          icon: "warning",
          showCancelButton: true,
          confirmButtonColor: "#3085d6",
@@ -35,7 +51,7 @@ const ManageProduct = () => {
                if (data) {
                   Swal.fire({
                      title: "Deleted!",
-                     text: "Your file has been deleted.",
+                     text: "Your Product has been deleted.",
                      icon: "success"
                   });
                }
@@ -47,6 +63,9 @@ const ManageProduct = () => {
       });
    }
 
+   if (!data?.length) {
+      return <EmptyAddProduct />
+   }
 
    return (
       <>
@@ -64,6 +83,22 @@ const ManageProduct = () => {
                   </div>
                </div>
             </div>
+            {/* Search Box */}
+            <div className="mb-3">
+               <form className="relative mb-4 flex ml-auto max-w-sm flex-wrap items-end">
+                  <input
+                     onChange={handleSearch}
+                     type="search"
+                     name="search"
+                     className="relative m-0 -mr-0.5 block flex-auto rounded-l border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-1 text-base font-normal leading-[1.6] outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary  focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:focus:border-primary"
+                     placeholder="Search by Name"
+                     aria-label="Search" />
+                  <button disabled
+                     className="relative z-[2] flex items-center rounded-r bg-[#2563eb] text-white  px-6 py-2 font-medium uppercase leading-tight shadow-md transition duration-150 ease-in-out  ">
+                     Search
+                  </button>
+               </form>
+            </div>
             <div className="overflow-y-hidden rounded-lg border">
                <div className="overflow-x-auto">
                   <table className="w-full">
@@ -77,40 +112,42 @@ const ManageProduct = () => {
                            <th className="px-3 py-3 text-center">Action</th>
                         </tr>
                      </thead>
-                     {products?.map((product, index) => <tbody key={product._id} className="text-gray-500 ">
-                        <tr className='overflow-hidden'>
-                           <td className="border-b  border-gray-200 bg-white px-3 py-3 text-sm">
-                              <p className="whitespace-no-wrap">{index + 1}</p>
-                           </td>
-                           <td className="border-b border-gray-200 bg-white px-3 py-3 text-sm">
-                              <div className="flex items-center">
-                                 <div className="w-20 h-20 rounded bg-slate-200 flex-shrink-0">
-                                    <img className="h-full w-full" src={product?.productImage} alt="" />
+                     {
+                        !products?.length ? "" : <tbody className="text-gray-500 ">
+                           {products?.map((product, index) => <tr key={product._id} className='overflow-hidden'>
+                              <td className="border-b  border-gray-200 bg-white px-3 py-3 text-sm">
+                                 <p className="whitespace-no-wrap">{index + 1}</p>
+                              </td>
+                              <td className="border-b border-gray-200 bg-white px-3 py-3 text-sm">
+                                 <div className="flex items-center">
+                                    <div className="w-20 h-20 rounded bg-slate-200 flex-shrink-0">
+                                       <img className="h-full w-full" src={product?.productImage} alt="" />
+                                    </div>
                                  </div>
-                              </div>
-                           </td>
-                           <td className="border-b border-gray-200 bg-white px-3 py-3 text-sm">
-                              <p className="whitespace-no-wrap">{product?.productName}</p>
-                           </td>
-                           <td className="border-b border-gray-200 bg-white px-3 py-3 text-sm">
-                              <p className="whitespace-no-wrap">{product?.productQuantity}</p>
-                           </td>
-                           <td className="border-b border-gray-200 bg-white px-3 py-3 text-sm">
-                              <p className="whitespace-no-wrap">{product?.saleCount}</p>
-                           </td>
+                              </td>
+                              <td className="border-b border-gray-200 bg-white px-3 py-3 text-sm">
+                                 <p className="whitespace-no-wrap">{product?.productName}</p>
+                              </td>
+                              <td className="border-b border-gray-200 bg-white px-3 py-3 text-sm">
+                                 <p className="whitespace-no-wrap">{product?.productQuantity}</p>
+                              </td>
+                              <td className="border-b border-gray-200 bg-white px-3 py-3 text-sm">
+                                 <p className="whitespace-no-wrap">{product?.saleCount}</p>
+                              </td>
 
-                           <td className="border border-gray-200 bg-white py-3 text-sm">
-                              <div className='flex items-center justify-center gap-1'>
-                                 <button onClick={() => handleOpen(product)} className="inline-flex items-center justify-center w-10 h-10 mr-2 text-pink-100 transition-colors duration-150 bg-green-700 rounded-lg focus:shadow-outline hover:bg-green-900">
-                                    <BorderColorTwoToneIcon />
-                                 </button>
-                                 <button onClick={() => handleDeleteProduct(product?._id)} className="inline-flex items-center justify-center w-10 h-10 text-pink-100 transition-colors duration-150 bg-pink-700 rounded-lg focus:shadow-outline hover:bg-pink-800">
-                                    <Delete sx={{ width: 20 }}></Delete>
-                                 </button>
-                              </div>
-                           </td>
-                        </tr>
-                     </tbody>)}
+                              <td className="border border-gray-200 bg-white py-3 text-sm">
+                                 <div className='flex items-center justify-center gap-1'>
+                                    <button onClick={() => handleOpen(product)} className="inline-flex items-center justify-center w-10 h-10 mr-2 text-pink-100 transition-colors duration-150 bg-green-700 rounded-lg focus:shadow-outline hover:bg-green-900">
+                                       <BorderColorTwoToneIcon />
+                                    </button>
+                                    <button onClick={() => handleDeleteProduct(product?._id)} className="inline-flex items-center justify-center w-10 h-10 text-pink-100 transition-colors duration-150 bg-pink-700 rounded-lg focus:shadow-outline hover:bg-pink-800">
+                                       <Delete sx={{ width: 20 }}></Delete>
+                                    </button>
+                                 </div>
+                              </td>
+                           </tr>)}
+                        </tbody>
+                     }
                   </table>
                </div>
                <div className="flex flex-col items-center border-t bg-white px-3 py-3 sm:flex-row sm:justify-between">

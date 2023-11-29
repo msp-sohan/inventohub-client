@@ -13,8 +13,6 @@ const CheckoutForm = ({ closeModal, paymentInfo }) => {
    const { user } = useAuth()
    const [processing, setProcessing] = useState(false)
 
-
-
    // Create Payment Intent
    useEffect(() => {
       if (paymentInfo.price > 0) {

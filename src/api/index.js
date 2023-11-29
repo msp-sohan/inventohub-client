@@ -6,16 +6,21 @@ const axiosSecure = axios.create({
 	withCredentials: true,
 });
 
-//  Intercept response and check for unauthorized response
+// Intercept response and check for unauthorized response
 axiosSecure.interceptors.response.use(
 	(response) => response,
 	async (error) => {
-		console.log('Error in the inteceptor', error.response);
+		console.log('Error in the interceptor', error.response.data);
 		if (error.response && (error.response.status === 401 || error.response.status === 403)) {
 			await clearCookie();
-			window.location.replace('/login');
+			if (error.response.status === 403) {
+				window.location.replace('/forbidden');
+			} else {
+				window.location.replace('/login');
+			}
 		}
 		return Promise.reject(error);
 	},
 );
+
 export default axiosSecure;

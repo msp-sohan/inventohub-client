@@ -1,10 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "./useAuth";
-import useAxios from "./useAxios";
+import useAxiosSecure from "./useAxiosSecure";
 
 const useGetProducts = () => {
    const { user } = useAuth()
-   const axios = useAxios()
+   const axios = useAxiosSecure()
    const { data, isLoading, refetch } = useQuery({
       queryKey: ['allProduct', user?.email],
       queryFn: async () => {
@@ -18,7 +18,7 @@ const useGetProducts = () => {
 export default useGetProducts;
 
 export const useProducts = () => {
-   const axios = useAxios()
+   const axios = useAxiosSecure()
    const { data, isLoading, refetch } = useQuery({
       queryKey: ['Products'],
       queryFn: async () => {

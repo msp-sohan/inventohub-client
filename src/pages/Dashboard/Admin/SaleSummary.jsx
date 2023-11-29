@@ -7,11 +7,28 @@ import { useSales } from "../../../hooks/useAllSales";
 import { useState } from "react";
 import NoticeModal from "./Modal/NoticeModal";
 import Helmat from "../../../components/Helmat/Helmat";
+import { TablePagination } from "@mui/material";
 
 const SaleSummary = () => {
-   const { data: allUsers } = useAllUsers()
+   const [page, setPage] = useState(0);
+   const [rowsPerPage, setRowsPerPage] = useState(10);
+
    const { data: allProduct } = useProducts()
-   const { data: allSales } = useSales()
+   const { data: totalSale } = useSales()
+   const { data: users } = useAllUsers({ page, rowsPerPage })
+   const allUsers = users?.result
+
+   const sortedUsers = allUsers?.sort((a, b) => {
+      if (a.role === 'Admin') {
+         return -1;
+      } else if (b.role === 'Admin') {
+         return 1;
+      } else {
+         return 0;
+      }
+   });
+
+   const count = users?.count
 
    const [open, setOpen] = useState(false);
 
@@ -25,7 +42,19 @@ const SaleSummary = () => {
    const handleClose = () => setOpen(false);
 
    const adminData = allUsers?.find(user => user.role === 'admin')
-   const userManager = allUsers?.filter(user => user?.role !== "admin")
+   // const exceptAdmin = allUsers?.filter(user => user?.role !== "admin")
+
+
+   // ============================================
+   // MIUI Pagination Handler
+   const handleChangePage = (event, newPage) => {
+      setPage(newPage);
+   };
+   const handleChangeRowsPerPage = (event) => {
+      setRowsPerPage(parseInt(event.target.value));
+      setPage(0);
+   };
+   // =============================================
 
    return (
       <>
@@ -56,7 +85,7 @@ const SaleSummary = () => {
                </div>
                <div className="px-4 text-gray-700">
                   <h3 className="text-sm tracking-wider">Total Sales</h3>
-                  <p className="text-3xl">{allSales?.length}</p>
+                  <p className="text-3xl">{totalSale?.totalSales}</p>
                </div>
             </div>
          </div>
@@ -77,7 +106,7 @@ const SaleSummary = () => {
                </thead>
                <tbody className="bg-white divide-y divide-gray-200">
                   {
-                     userManager?.map((user, index) => <tr key={user?._id}>
+                     sortedUsers?.map((user, index) => <tr key={user?._id}>
                         <td className="px-6 py-4 whitespace-nowrap text-base text-gray-500 font-bold">
                            {index + 1}
                         </td>
@@ -94,13 +123,24 @@ const SaleSummary = () => {
                            {user?.role}
                         </td>
                         <td className={`pl-6 py-4   text-sm md:text-base font-medium ${user?.role === 'user' || !user?.role || !user?.shopId ? "" : "hidden"}`}>
-                           <button onClick={() => handleOpen(user)} className="py-1 px-3 rounded bg-green-300 hover:bg-green-800 hover:text-white font-semibold">send Promotional Email</button>
+                           {
+                              user?.role === 'admin' ? <button className="py-1 w-full lg:w-48 px-3 rounded bg-violet-500  text-white font-semibold">System Admin</button> : <button onClick={() => handleOpen(user)} className="py-1 px-3 rounded bg-green-300 hover:bg-green-800 hover:text-white font-semibold">send Promotional Email</button>
+                           }
                         </td>
                      </tr>)
                   }
                </tbody>
             </table>
          </div>
+         <TablePagination
+            component="div"
+            count={count || 0}
+            page={page || 0}
+            onPageChange={handleChangePage}
+            rowsPerPage={rowsPerPage}
+            onRowsPerPageChange={handleChangeRowsPerPage}
+            rowsPerPageOptions={[5, 10, 20, 50]}
+         />
          <NoticeModal open={open} handleClose={handleClose} singleShop={singleUser}></NoticeModal>
       </>
    );

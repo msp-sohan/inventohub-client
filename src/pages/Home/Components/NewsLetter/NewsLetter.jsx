@@ -11,7 +11,7 @@ const Newsletter = () => {
                            Newsletter
                         </span>
                         <p className="mb-6 text-base text-gray-600 dark:text-gray-400">
-                           Lorem ipsum dor amet set ispicuous.
+                           Stay updated with the latest trends and innovations in inventory management. Our newsletter delivers valuable insights directly to your inbox.
                         </p>
                         <div className="w-full lg:w-1/2">
                            <div className="flex gap-4">
@@ -30,10 +30,10 @@ const Newsletter = () => {
                      </div>
                      <div data-aos="fade-up" className="w-full px-4 mb-6 lg:mb-0 lg:w-1/2">
                         <h2 className="mb-3 text-3xl font-semibold text-gray-900 sm:text-5xl dark:text-gray-400">
-                           Join 100+ people on our newsletter
+                           Join 100+ professionals in optimizing their inventory management
                         </h2>
                         <p className="mb-6 text-gray-700 dark:text-gray-400">
-                           Lorem ipsum dor amet set Lorem ipsum dor amet set ispicuous .
+                           Sign up for our newsletter and be part of a community that leverages smart inventory solutions for seamless operations and business growth.
                         </p>
                         <div className="flex flex-wrap justify-start mb-6">
                            <input

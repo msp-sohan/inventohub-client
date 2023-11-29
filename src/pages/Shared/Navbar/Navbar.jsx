@@ -17,14 +17,17 @@ import { Login, Person2 } from '@mui/icons-material';
 import useAuth from '../../../hooks/useAuth';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import Logo from '../../../components/Logo/Logo';
+import Loader from '../../../components/Shared/Loader';
 import useRole from '../../../hooks/useRole';
 
 const userIcon = 'https://i.ibb.co/6HtdFTk/585e4bf3cb11b227491c339a.png'
 const shopLogo = 'https://i.ibb.co/PFhTpK2/Invebto-Hub-2.png'
 
 const Navbar = () => {
-   const { user, logOut } = useAuth({})
-   const { role } = useRole()
+   const { user, logOut, loading } = useAuth({})
+
+   const { role, } = useRole()
+
    const [anchorElNav, setAnchorElNav] = React.useState(null);
    const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -43,6 +46,16 @@ const Navbar = () => {
       setAnchorElUser(null);
    };
 
+   const handleLogout = () => {
+      logOut()
+   }
+
+   if (loading) {
+      return <Loader />
+   }
+
+   // =============================================================================
+   // Navbar Links
    const navlinks = <>
       <NavLink to="/" className={({ isActive }) => isActive ? "button" : "normal-button"}>
          Home
@@ -53,16 +66,16 @@ const Navbar = () => {
             <NavLink to="/signup" className={({ isActive }) => isActive ? "button" : "normal-button"}>Register</NavLink>
          </>
       }
-
       {
          (!role || role === 'user' || !user) && <button disabled={!user}><NavLink disabled={!user?.email} to="/create-store" className={({ isActive }) => isActive ? "button" : "normal-button"}>Create-Store</NavLink></button>
       }
-
       {
-         (role === "manager" || role === "admin") && <NavLink to="/dashboard" className={({ isActive }) => isActive ? "button" : "normal-button"}>Dashboard</NavLink>
+         (!role === 'user' || role === "manager" || role === "admin") ? <NavLink to="/dashboard" className={({ isActive }) => isActive ? "button" : "normal-button"}>Dashboard</NavLink> : ""
       }
       <NavLink to="/watch-demo" className={({ isActive }) => isActive ? "button" : "normal-button"}>Watch Demo</NavLink>
    </>
+   // =======================================================================
+
 
    return (
       <AppBar sx={{ backgroundColor: '#387ae8' }} position="static">
@@ -141,7 +154,7 @@ const Navbar = () => {
                         user && user?.email ? <MenuItem sx={{ display: 'block' }} onClick={handleCloseUserMenu}>
                            <Typography sx={{ paddingLeft: '5px', display: 'flex', justifyContent: 'center', alignItems: 'center' }} textAlign="center"><Person2 /> <span className='pl-3'>{user?.displayName}</span></Typography>
                            <Button
-                              onClick={logOut}
+                              onClick={handleLogout}
                               sx={{
                                  display: 'flex',
                                  justifyContent: 'start',

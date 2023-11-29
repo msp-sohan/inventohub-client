@@ -18,7 +18,7 @@ const AddProduct = () => {
       const image = data.get('productImage')
       const productQuantity = parseInt(data.get('productQuantity'))
       const productLocation = data.get('productLocation')
-      const productionCost = parseInt(data.get('productionCost'))
+      const productCost = parseInt(data.get('productionCost'))
       const profitMargin = parseInt(data.get('profitMargin'))
       const discount = parseInt(data.get('discount'))
       const productDescription = data.get('productDescription')
@@ -30,7 +30,7 @@ const AddProduct = () => {
          productName,
          productQuantity,
          productLocation,
-         productionCost,
+         productCost,
          profitMargin,
          discount,
          productDescription,
@@ -40,11 +40,15 @@ const AddProduct = () => {
 
       try {
          await addProduct(productData)
-
          toast.success('Product Added Successfully')
          navigate('/dashboard/manage-product')
       } catch (error) {
-         toast.error(error.message)
+         if (error.response.data?.error === 'Product limit reached for this shop') {
+            toast.error('Product limit reached, cant add more Product.');
+            navigate('/dashboard/subscription')
+         } else {
+            toast.error(error.message)
+         }
       }
    };
    return (

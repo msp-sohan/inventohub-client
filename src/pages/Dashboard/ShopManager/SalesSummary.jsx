@@ -2,19 +2,26 @@ import { PriceCheck } from "@mui/icons-material";
 import { GrMoney } from "react-icons/gr";
 import { TbMoneybag } from "react-icons/tb";
 import SalesHistory from "../../../components/Dashboard/Manager/SalesHistory";
-import useGetProducts from "../../../hooks/useGetProducts";
-import useAllSales from "../../../hooks/useAllSales";
+import { useManagerAllSales } from "../../../hooks/useAllSales";
 import Helmat from "../../../components/Helmat/Helmat";
+import useGetProducts from "../../../hooks/useGetProducts";
 
 const SalesSummary = () => {
-   const { data } = useAllSales({ page: 0, rowsPerPage: 0 })
-   const allSales = data?.result
+   const { data: allProducts } = useGetProducts();
 
-   const totalSales = parseFloat(allSales?.reduce((sale, item) => sale + item?.sellingPrice, 0)).toFixed(2)
+   // ===============================================================================
+   // Secondary Api For All Get Paid
+   const { data: secondData } = useManagerAllSales({ page: 0, rowsPerPage: 0 })
+   const saledAllData = secondData?.result?.map(data => data.salesData)
 
-   const { data: products } = useGetProducts()
-   const totalInvest = parseFloat(products?.reduce((sale, item) => sale + item?.productionCost, 0)).toFixed(2)
-   const toalProfit = (totalSales - totalInvest)
+   // ===============================================================================
+
+   const totalSales = parseFloat(saledAllData?.reduce((sale, item) => sale + item?.sellingPrice, 0)).toFixed(2)
+   const totalCost = parseFloat(saledAllData?.reduce((sale, item) => sale + item?.productCost, 0)).toFixed(2)
+   const totalInvest = parseFloat(allProducts?.reduce((sale, item) => sale + item?.productCost, 0)).toFixed(2)
+   const toalProfit = parseFloat((totalSales - totalCost)).toFixed(2)
+
+
 
    return (
       <>
@@ -89,7 +96,7 @@ const SalesSummary = () => {
             </div>
 
          </div>
-         <SalesHistory allSales={allSales}></SalesHistory>
+         <SalesHistory saledAllData={saledAllData}></SalesHistory>
       </>
    );
 };

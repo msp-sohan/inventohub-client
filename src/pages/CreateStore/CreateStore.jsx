@@ -18,12 +18,9 @@ const CreateStore = () => {
       event.preventDefault();
       const data = new FormData(event.currentTarget);
       const shopName = data.get("shopName")
-      const shopInfo = data.get("shopInfo")
+      const shopDescription = data.get("shopDescription")
       const shopLocation = data.get("shopLocation")
-      const shopOwnerEmail = user?.email
-      const shopOwnerName = user?.displayName
       const image = data.get('shopLogo')
-
 
       try {
          // Upload image
@@ -31,17 +28,16 @@ const CreateStore = () => {
 
          const shopData = {
             shopName,
-            shopInfo,
+            shopDescription,
             shopLocation,
-            shopOwnerEmail,
-            shopOwnerName,
+            email: user?.email,
+            name: user?.displayName,
             shopLogo: imageData?.data?.display_url
          }
 
          //  save shop Details in database
          await addShop(shopData)
-
-         navigate('/')
+         navigate('/dashboard/manage-product')
          toast.success('Create Shop Successfully')
       } catch (error) {
          toast.error(error.message)
@@ -57,7 +53,7 @@ const CreateStore = () => {
             <Box component="form" onSubmit={handleSubmit} required sx={{ mt: 1 }}>
                <Grid container spacing={3}>
                   <Grid item xs={12} sm={6}>
-                     <TextField item xs={12} sm={6}
+                     <TextField item="true" xs={12} sm={6}
                         required
                         id="shopName"
                         name="shopName"
@@ -81,9 +77,9 @@ const CreateStore = () => {
                   <Grid item xs={12}>
                      <TextField
                         required
-                        id="shopInfo"
-                        name="shopInfo"
-                        label="Shop Info"
+                        id="shopDescription"
+                        name="shopDescription"
+                        label="Shop Description"
                         fullWidth
                         multiline
                         minRows={3}
@@ -106,7 +102,7 @@ const CreateStore = () => {
                         required
                         id="shopOwnerEmail"
                         name="shopOwnerEmail"
-                        value={"shopOwnerEmail"}
+                        value={user?.email}
                         label="Shop Owner Email"
                         fullWidth
                         variant="outlined"
@@ -118,7 +114,7 @@ const CreateStore = () => {
                         required
                         id="shopOwnerName"
                         name="shopOwnerName"
-                        value="shopOwnerName"
+                        value={user?.displayName}
                         label="Shop Owner Name"
                         fullWidth
                         variant="outlined"

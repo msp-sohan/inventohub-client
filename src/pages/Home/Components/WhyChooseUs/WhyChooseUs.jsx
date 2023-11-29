@@ -6,10 +6,9 @@ const WhyChooseUs = () => {
       <div className="bg-gray-100 dark:bg-gray-800">
          <section id="features" className="relative block px-6 pb-10 md:px-10  border-t border-b shadow-[0_3px_10px_rgb(0,0,0,0.2)] drop-shadow-2xl">
             <div className="relative mx-auto max-w-5xl text-center">
-               <SectionTitle title="Build a Shop That Your Customers Love" subtitle="Why choose us" />
+               <SectionTitle title="Powerful Inventory Management" subtitle="Why choose us" />
                <p className="mx-auto my-4 w-full max-w-xl bg-transparent text-center font-medium leading-relaxed tracking-wide ">
-                  Our templates allow for maximum customization. No technical skills required – our intuitive design tools
-                  let you get the job done easily.
+                  Our platform provides advanced inventory management features with an easy-to-use interface. No technical skills required – manage your inventory effortlessly.
                </p>
             </div>
 
@@ -42,9 +41,9 @@ const WhyChooseUs = () => {
                         <line x1="17" y1="17" x2="17" y2="17.01"></line>
                      </svg>
                   </div>
-                  <h3 className="mt-6 text-xl">Customizable</h3>
+                  <h3 className="mt-6 text-xl">Customizable Inventory</h3>
                   <p className="my-4 mb-0 font-normal leading-relaxed tracking-wide ">
-                     Tailor your landing pages look and feel, from the color scheme to the font size, to the design of the page.
+                     Tailor your inventorys details, from product names to quantities, with our intuitive customization options.
                   </p>
                </div>
 
@@ -73,9 +72,9 @@ const WhyChooseUs = () => {
                         <polyline points="13 3 13 10 19 10 11 21 11 14 5 14 13 3"></polyline>
                      </svg>
                   </div>
-                  <h3 className="mt-6 text-xl">Fast Performance</h3>
+                  <h3 className="mt-6 text-xl">Fast Inventory Updates</h3>
                   <p className="my-4 mb-0 font-normal leading-relaxed tracking-wide ">
-                     We build our templates for speed in mind, for super-fast load times so your customers never waver.
+                     Experience lightning-fast updates to your inventory, ensuring real-time information for effective management.
                   </p>
                </div>
 
@@ -109,14 +108,12 @@ const WhyChooseUs = () => {
                         <line x1="16" y1="17" x2="14.5" y2="18.5"></line>
                      </svg>
                   </div>
-                  <h3 className="mt-6 text-xl">Fully Featured</h3>
+                  <h3 className="mt-6 text-xl">Comprehensive Features</h3>
                   <p className="my-4 mb-0 font-normal leading-relaxed tracking-wide ">
-                     Everything you need to succeed and launch your landing page, right out of the box. No need to install anything
-                     else.
+                     Utilize a complete set of features for successful inventory management, right out of the box. No additional installations required.
                   </p>
                </div>
             </div>
-
          </section>
       </div>
    );

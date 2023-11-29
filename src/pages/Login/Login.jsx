@@ -15,46 +15,48 @@ import { TbFidgetSpinner } from 'react-icons/tb'
 import { useState } from "react";
 import { FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-import { getToken } from "../../api/auth";
+import { getRole, getToken } from "../../api/auth";
 import Helmat from "../../components/Helmat/Helmat";
-import useRole from "../../hooks/useRole";
+import Loader from "../../components/Shared/Loader";
 
-export default function Login() {
-   const { signIn, loading } = useAuth()
-   const navigate = useNavigate()
-   const location = useLocation()
-   const from = location?.state?.from?.pathname || '/'
-   const { role } = useRole()
-
+const Login = () => {
+   const { signIn, loading } = useAuth();
    const [showPassword, setShowPassword] = useState(false);
+   const navigate = useNavigate();
+   const location = useLocation();
+   const from = location?.state?.from?.pathname || '/';
+
    const handleClickShowPassword = () => setShowPassword((show) => !show);
 
    const handleSubmit = async (event) => {
       event.preventDefault();
       const data = new FormData(event.currentTarget);
 
-      const email = data.get("email")
-      const password = data.get("password")
+      const email = data.get("email");
+      const password = data.get("password");
       try {
-
          // User Registration
-         const result = await signIn(email, password)
+         const result = await signIn(email, password);
          // get token
-         await getToken(result?.user?.email)
+         await getToken(result?.user?.email);
+
+         const role = await getRole(result?.user?.email)
 
          if (role === 'user') {
-            navigate('/create-store')
+            navigate('/create-store');
          } else if (role === 'manager' || role === 'admin') {
-            navigate('/dashboard')
+            navigate('/dashboard');
          } else {
-
-            navigate(from, { replace: true })
+            navigate(from, { replace: true });
          }
-
-         toast.success('Login Successfull')
+         toast.success('Login Successful');
       } catch (error) {
-         toast.error(error.message)
+         toast.error(error.message);
       }
+   };
+
+   if (loading) {
+      return <Loader />
    }
 
    return (
@@ -150,3 +152,5 @@ export default function Login() {
       </>
    );
 }
+
+export default Login

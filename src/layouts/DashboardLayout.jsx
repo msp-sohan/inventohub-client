@@ -14,10 +14,10 @@ import DashboardNavbar from '../components/Dashboard/Navbar/DashboardNavbar';
 import MenuItem from '../components/Dashboard/Sidebar/MenuItem';
 import AdminMenu from '../components/Dashboard/Menu/AdminMenu';
 import Copyright from '../pages/Shared/Footer/Copyright';
-import useRole from '../hooks/useRole';
 import ManagerMenu from '../components/Dashboard/Menu/ManagerMenu';
 import Loader from '../components/Shared/Loader';
 import Helmat from '../components/Helmat/Helmat';
+import useRole from '../hooks/useRole';
 
 const drawerWidth = 240;
 const shopLogo = 'https://i.ibb.co/PFhTpK2/Invebto-Hub-2.png'
@@ -25,6 +25,7 @@ const shopLogo = 'https://i.ibb.co/PFhTpK2/Invebto-Hub-2.png'
 const DashboardLayout = (props) => {
    const { logOut, loading } = useAuth()
    const { role } = useRole()
+
    const { window } = props;
    const [mobileOpen, setMobileOpen] = React.useState(false);
 

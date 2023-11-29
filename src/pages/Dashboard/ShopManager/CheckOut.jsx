@@ -1,5 +1,5 @@
 import Swal from "sweetalert2";
-import { addToSale } from "../../../api/sales";
+import { addToAllSale, addToSale } from "../../../api/sales";
 import useCheckout from "../../../hooks/useCheckout";
 import EmptyPage from "../../EmptyPage/EmptyPage";
 import jsPDF from "jspdf";
@@ -7,43 +7,63 @@ import 'jspdf-autotable';
 import toast from "react-hot-toast";
 import useAuth from "../../../hooks/useAuth";
 import Helmat from "../../../components/Helmat/Helmat";
+import { useNavigate } from "react-router-dom";
 
 const CheckOut = () => {
    const { user } = useAuth()
    const { data: checkouts = [], refetch } = useCheckout()
+   const navigate = useNavigate()
+
+   const returnData = checkouts.map(item => { return item })
 
    const totalPrice = parseFloat(checkouts?.reduce((price, item) => item?.sellingPrice + price, 0)).toFixed(2)
 
    const handleAddSales = async (item) => {
       try {
-         const result = await addToSale(item)
-         if (result) {
-            Swal.fire({
-               position: "top-end",
-               icon: "success",
-               title: "Your work has been saved",
-               showConfirmButton: false,
-               timer: 1500
-            });
-            refetch()
-         }
+         await addToSale(item)
+         Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Get Paid Successfully",
+            showConfirmButton: false,
+            timer: 1500
+         });
+         refetch()
       } catch (error) {
          toast.error(error.message)
       }
    }
 
-   if (checkouts?.length < 0) {
+   const handleAddAllSales = async (salesData) => {
+      try {
+         await addToAllSale(salesData)
+         Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Get Paid Successfully",
+            showConfirmButton: false,
+            timer: 1500
+         });
+         refetch()
+         navigate('/dashboard/sales-collection')
+      } catch (error) {
+         toast.error(error.message)
+      }
+   }
+
+   if (checkouts?.length === 0) {
       return <EmptyPage />
    }
 
+   // =============================================
+   // Genarate PDF by jsPDF
    function genPDF(item) {
       var doc = new jsPDF('p', 'px', 'a4');
       doc.setFontSize(24);
       doc.text('Invoice', 200, 50);
       doc.setFontSize(12);
-      doc.text(`Invoice Number: ${item._id}`, 35, 90);
-      doc.text(`Date: ${item.productAddedDate}`, 35, 105);
-
+      doc.text(`Invoice Number: ${item[0]?._id}`, 35, 90);
+      doc.text(`Date: ${new Date().toLocaleDateString('en-GB').replace(/\//g, '-')}`, 35, 105);
       doc.text(`Customer: ${user?.displayName}`, 35, 120);
       doc.text(`Email: ${user?.email}`, 35, 135);
       doc.setFontSize(14);
@@ -52,7 +72,7 @@ const CheckOut = () => {
       // Table Headers
       const headers = [['Product Name', 'Quantity', 'Price']];
       // Table Data
-      const data = [[`${item.productName}`, 1, `$${item.sellingPrice}`]];
+      const data = [[`${item[0]?.productName}`, `${item[0]?.qty}`, `$${item[0]?.sellingPrice}`]];
       var styles = {
          fontSize: 16,
       };
@@ -64,9 +84,9 @@ const CheckOut = () => {
          margin: { top: 200 },
       });
       doc.setFontSize(12);
-      doc.text(`Total: $${item?.sellingPrice}`, 35, doc.autoTable.previous.finalY + 30);
+      doc.text(`Total: $${item[0]?.sellingPrice}`, 35, doc.autoTable.previous.finalY + 30);
       doc.text('Thank you for your purchase!', 35, doc.autoTable.previous.finalY + 45);
-      doc.addImage(item?.productImage, 350, doc.autoTable.previous.finalY + 10, 25, 25)
+      // doc.addImage(item[0]?.productImage, 350, doc.autoTable.previous.finalY + 10, 25, 25)
       doc.text('Powered By: Invento Hub', 310, doc.autoTable.previous.finalY + 50);
 
       // Save the PDF
@@ -81,21 +101,20 @@ const CheckOut = () => {
                <div className="mb-16 text-center">
                   <h1
                      className="mb-6 text-2xl font-semibold leading-7 tracking-wide text-gray-700 lg:text-4xl dark:text-gray-300 lg:leading-9">
-                     Thank you Add to Checkout, </h1>
+                     Checkout Here </h1>
                </div>
                <div className="max-w-4xl mx-auto mb-10">
                   <h2 className="mb-4 text-xl font-medium dark:text-gray-400">What you CheckOut:</h2>
-
                   {
                      checkouts?.map(item =>
-                        <div key={item._id} className="p-10 bg-white rounded-md shadow dark:bg-gray-800 sm:flex sm:items-center xl:py-5 xl:px-12">
+                        <div key={item?._id} className="p-10 bg-white rounded-md shadow dark:bg-gray-800 sm:flex sm:items-center xl:py-5 xl:px-12">
                            <div className="mr-6 md:mr-12">
                               <img className=" w-full lg:w-[80px] h-[200px] lg:h-[80px] object-cover bg-gray-200  mx-auto mb-6 sm:mb-0 "
-                                 src={item?.productImage} alt={item.productName} />
+                                 src={item?.productImage} alt={item?.productName} />
                            </div>
                            <div className="flex-1">
                               <p className="inline-block mb-1 text-lg font-medium dark:text-gray-400 hover:underline">
-                                 {item.productName}
+                                 {item?.productName}
                               </p>
                               <div className="flex flex-wrap">
                                  <p className="mr-4 text-sm font-medium dark:text-gray-400">
@@ -112,7 +131,7 @@ const CheckOut = () => {
                                  </p>
                                  <p className="text-sm font-medium dark:text-gray-400">
                                     <span>Qty:</span>
-                                    <span className="ml-2 text-gray-400">1</span>
+                                    <span className="ml-2 text-gray-400">{item?.qty}</span>
                                  </p>
                               </div>
                            </div>
@@ -142,12 +161,14 @@ const CheckOut = () => {
                            <span className="text-xl">${totalPrice}</span>
                         </span>
                      </div>
-                     <button onClick={genPDF} className="w-full px-6 py-3 text-blue-500 border border-blue-500 rounded-md md:w-auto hover:text-gray-100 hover:bg-blue-600 dark:border-gray-800 dark:hover:bg-gray-800 dark:text-gray-300">
-                        Go Back To Cart
+
+                     <button onClick={() => genPDF(returnData)} className="px-6 w-full  py-3 text-blue-500 border border-blue-500 rounded-md md:w-auto hover:text-gray-100 hover:bg-blue-600 dark:border-gray-800 dark:hover:bg-gray-800 dark:text-gray-300">
+                        <p onClick={() => handleAddAllSales(checkouts)}>All Get Paid</p>
                      </button>
+
                   </div>
                   <div className="flex flex-wrap items-center justify-between gap-4 ">
-
+                     {/* <button className="bg-green-500 p-3 hover:text-white">Try Pdf</button> */}
                   </div>
                </div>
             </div>

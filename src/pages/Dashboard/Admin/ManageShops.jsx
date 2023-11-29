@@ -53,7 +53,7 @@ const ManageShops = () => {
                            {shop?.limit}
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm md:text-base text-gray-500">
-                           {shop?.shopInfo}
+                           {shop?.shopDescription}
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap  text-sm md:text-base font-medium">
                            <button onClick={() => handleOpen(shop)} className="py-1 px-3 rounded bg-green-300 hover:bg-green-800 hover:text-white font-semibold">Send Notice</button>

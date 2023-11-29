@@ -7,6 +7,6 @@ export const getCheckOut = async (email) => {
 };
 // Save a product to checkout
 export const addToCheckOut = async (checkOutData) => {
-	const { data } = await axiosSecure.post(`/checkout`, checkOutData);
+	const { data } = await axiosSecure.put(`/checkout`, checkOutData);
 	return data;
 };

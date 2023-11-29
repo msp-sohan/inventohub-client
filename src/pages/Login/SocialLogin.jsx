@@ -3,25 +3,22 @@ import { Box, Button } from "@mui/material";
 import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-import { getToken, saveUser } from "../../api/auth";
-import useRole from "../../hooks/useRole";
+import { getRole, getToken, saveUser } from "../../api/auth";
 
 const SocialLogin = () => {
-   const { user, signInWithGoogle } = useAuth()
+   const { signInWithGoogle } = useAuth()
    const navigate = useNavigate()
-
-   const { role } = useRole(user?.email)
 
    const handleGoogleSignIn = async () => {
       try {
          // User Registration using google
          const result = await signInWithGoogle()
-
          //  save user Data in database
          await saveUser(result?.user)
-
          // get token
          await getToken(result?.user?.email)
+
+         const role = await getRole(result?.user?.email)
 
          if (role === 'user') {
             navigate('/create-store')
@@ -31,7 +28,7 @@ const SocialLogin = () => {
             navigate('/')
          }
 
-         toast.success('Sign In Successfull')
+         toast.success('Sign In Successful')
       } catch (error) {
          toast.error(error.message)
       }

@@ -1,3 +1,4 @@
+import { FaQuoteLeft } from "react-icons/fa";
 
 const Testimonial = () => {
    return (
@@ -5,11 +6,10 @@ const Testimonial = () => {
          <section className="flex items-center bg-gray-100 shadow-[0_3px_10px_rgb(0,0,0,0.2)] shadow-gray-500 dark:bg-gray-800">
             <div className="p-4 mx-auto max-w-7xl">
                <div className="text-center mb-14">
-                  <h1 className="mb-4 text-3xl font-bold dark:text-white"> Testimonials </h1>
-                  <p className="max-w-xl mx-auto text-gray-500"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste
-                     quae quam
-                     nostrum harum non in at
-                     eaque quibusdam eum ratione.</p>
+                  <h1 className="mb-4 text-3xl font-bold dark:text-white">Testimonials</h1>
+                  <p className="max-w-xl mx-auto text-gray-500">Discover what our satisfied customers have to say about their experiences
+                     with our products and services. We take pride in providing top-notch solutions that exceed expectations and
+                     empower businesses to thrive.</p>
                </div>
                <div className="flex ">
                   <div className="grid grid-cols-1 gap-4 lg:gap-4 sm:gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -17,17 +17,11 @@ const Testimonial = () => {
                         <div className="relative z-20 -mt-14 ">
                            <div className="p-8">
                               <span className="inline-block p-3 mb-3 text-xs text-white bg-blue-500 rounded-full">
-                                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
-                                    className="bi bi-quote" viewBox="0 0 16 16">
-                                    <path
-                                       d="M12 12a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1h-1.388c0-.351.021-.703.062-1.054.062-.372.166-.703.31-.992.145-.29.331-.517.559-.683.227-.186.516-.279.868-.279V3c-.579 0-1.085.124-1.52.372a3.322 3.322 0 0 0-1.085.992 4.92 4.92 0 0 0-.62 1.458A7.712 7.712 0 0 0 9 7.558V11a1 1 0 0 0 1 1h2Zm-6 0a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1H4.612c0-.351.021-.703.062-1.054.062-.372.166-.703.31-.992.145-.29.331-.517.559-.683.227-.186.516-.279.868-.279V3c-.579 0-1.085.124-1.52.372a3.322 3.322 0 0 0-1.085.992 4.92 4.92 0 0 0-.62 1.458A7.712 7.712 0 0 0 3 7.558V11a1 1 0 0 0 1 1h2Z" />
-                                 </svg>
+                                 <FaQuoteLeft className="w-8 h-8" />
                               </span>
-                              <p className="mb-4 text-base leading-7 dark:text-gray-400">
-                                 Keep on jumping to get the most of the jump rope exercise. It will help you to
-                                 increase
-                                 your
-                                 bone density as well
+                              <p className="mb-4 text-base leading-7 dark:text-gray-400 min-h-[130px]">
+                                 The user-friendly interface and automation features have transformed the way we handle inventory, saving time and
+                                 ensuring accuracy.
                               </p>
                            </div>
                            <div className="flex flex-col items-center pb-5 bg-blue-500 gap-x-4">
@@ -65,11 +59,11 @@ const Testimonial = () => {
                               </div>
                               <div className="mt-3 text-center info">
                                  <h2 className="text-lg font-bold text-white dark:text-white">
-                                    Jori King
+                                    Alex Patel
                                  </h2>
                                  <span
                                     className="block text-xs font-semibold text-blue-300 uppercase dark:text-blue-300">
-                                    Backend Developer
+                                    Warehouse Supervisor
                                  </span>
                               </div>
                            </div>
@@ -79,17 +73,11 @@ const Testimonial = () => {
                         <div className="relative z-20 -mt-14 ">
                            <div className="p-8">
                               <span className="inline-block p-3 mb-3 text-xs text-white bg-blue-500 rounded-full">
-                                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
-                                    className="bi bi-quote" viewBox="0 0 16 16">
-                                    <path
-                                       d="M12 12a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1h-1.388c0-.351.021-.703.062-1.054.062-.372.166-.703.31-.992.145-.29.331-.517.559-.683.227-.186.516-.279.868-.279V3c-.579 0-1.085.124-1.52.372a3.322 3.322 0 0 0-1.085.992 4.92 4.92 0 0 0-.62 1.458A7.712 7.712 0 0 0 9 7.558V11a1 1 0 0 0 1 1h2Zm-6 0a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1H4.612c0-.351.021-.703.062-1.054.062-.372.166-.703.31-.992.145-.29.331-.517.559-.683.227-.186.516-.279.868-.279V3c-.579 0-1.085.124-1.52.372a3.322 3.322 0 0 0-1.085.992 4.92 4.92 0 0 0-.62 1.458A7.712 7.712 0 0 0 3 7.558V11a1 1 0 0 0 1 1h2Z" />
-                                 </svg>
+                                 <FaQuoteLeft className="w-8 h-8" />
                               </span>
-                              <p className="mb-4 text-base leading-7 dark:text-gray-400">
-                                 Keep on jumping to get the most of the jump rope exercise. It will help you to
-                                 increase
-                                 your
-                                 bone density as well
+                              <p className="mb-4 text-base leading-7 dark:text-gray-400 min-h-[130px]">
+                                 This inventory management system has proven to be a reliable and efficient tool for tracking shipments and managing
+                                 stock levels seamlessly.
                               </p>
                            </div>
                            <div className="flex flex-col items-center pb-5 bg-blue-500 gap-x-4">
@@ -127,11 +115,11 @@ const Testimonial = () => {
                               </div>
                               <div className="mt-3 text-center info">
                                  <h2 className="text-lg font-bold text-white dark:text-white">
-                                    Jori King
+                                    Michael Rodriguez
                                  </h2>
                                  <span
                                     className="block text-xs font-semibold text-blue-300 uppercase dark:text-blue-300">
-                                    Backend Developer
+                                    Logistics Coordinator
                                  </span>
                               </div>
                            </div>
@@ -141,17 +129,11 @@ const Testimonial = () => {
                         <div className="relative z-20 -mt-14 ">
                            <div className="p-8">
                               <span className="inline-block p-3 mb-3 text-xs text-white bg-blue-500 rounded-full">
-                                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
-                                    className="bi bi-quote" viewBox="0 0 16 16">
-                                    <path
-                                       d="M12 12a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1h-1.388c0-.351.021-.703.062-1.054.062-.372.166-.703.31-.992.145-.29.331-.517.559-.683.227-.186.516-.279.868-.279V3c-.579 0-1.085.124-1.52.372a3.322 3.322 0 0 0-1.085.992 4.92 4.92 0 0 0-.62 1.458A7.712 7.712 0 0 0 9 7.558V11a1 1 0 0 0 1 1h2Zm-6 0a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1H4.612c0-.351.021-.703.062-1.054.062-.372.166-.703.31-.992.145-.29.331-.517.559-.683.227-.186.516-.279.868-.279V3c-.579 0-1.085.124-1.52.372a3.322 3.322 0 0 0-1.085.992 4.92 4.92 0 0 0-.62 1.458A7.712 7.712 0 0 0 3 7.558V11a1 1 0 0 0 1 1h2Z" />
-                                 </svg>
+                                 <FaQuoteLeft className="w-8 h-8" />
                               </span>
-                              <p className="mb-4 text-base leading-7 dark:text-gray-400">
-                                 Keep on jumping to get the most of the jump rope exercise. It will help you to
-                                 increase
-                                 your
-                                 bone density as well
+                              <p className="mb-4 text-base leading-7 dark:text-gray-400 min-h-[130px]">
+                                 Implementing this inventory system streamlined our processes, providing real-time insights and reducing errors.
+                                 It{"'"}s a game-changer!
                               </p>
                            </div>
                            <div className="flex flex-col items-center pb-5 bg-blue-500 gap-x-4">
@@ -189,11 +171,11 @@ const Testimonial = () => {
                               </div>
                               <div className="mt-3 text-center info">
                                  <h2 className="text-lg font-bold text-white dark:text-white">
-                                    Jori King
+                                    Sarah Thompson
                                  </h2>
                                  <span
                                     className="block text-xs font-semibold text-blue-300 uppercase dark:text-blue-300">
-                                    Backend Developer
+                                    Operations Manager
                                  </span>
                               </div>
                            </div>
