@@ -82,9 +82,10 @@ const SalesCollection = () => {
                   </button>
                </form>
             </div>
-            <div className="overflow-y-hidden rounded-lg border w-[400px] md:w-[500px] lg:w-full">
-               <div className="">
-                  <table className="overflow-x-auto w-full">
+            {/* Table */}
+            {/* <div className="overflow-y-hidden rounded-lg border md:w-[500px] lg:w-full">
+               <div className="w-[calc(100vw-32px)]">
+                  <table className="overflow-x-auto w-screen">
                      <thead className='overflow-x-auto'>
                         <tr className="bg-blue-600 text-left text-xs overflow-x-auto font-semibold uppercase tracking-widest text-white">
                            <th className="px-3 py-3">Product ID</th>
@@ -134,7 +135,59 @@ const SalesCollection = () => {
                   </table>
                </div>
 
+            </div> */}
+            {/* ================================================================ */}
+            <div className="mt-12 grid grid-cols-1 overflow-x-auto">
+               <table className="w-full divide-y border rounded divide-gray-200 overflow-x-auto">
+                  <thead className="bg-blue-300 text-black">
+                     <tr className="bg-blue-600 text-left text-xs overflow-x-auto font-semibold uppercase tracking-widest text-white">
+                        <th className="px-3 py-3">Product ID</th>
+                        <th className="px-3 py-3">Product Image</th>
+                        <th className="px-3 py-3">Product Name </th>
+                        <th className="px-3 py-3">Quantity</th>
+                        <th className="px-3 py-3">Discount</th>
+                        <th className="px-3 py-3">Selling Price</th>
+                        <th className="px-3 py-3 text-center">Action</th>
+                     </tr>
+                  </thead>
+                  {products?.map((product) =>
+                     <tbody key={product._id} className="text-gray-500 overflow-x-auto">
+                        <tr className='overflow-x-auto'>
+                           <td className="border-b  border-gray-200 bg-white px-3 py-3 text-sm">
+                              <p className="whitespace-no-wrap">{product?._id}</p>
+                           </td>
+                           <td className="border-b border-gray-200 bg-white px-3 py-3 text-sm">
+                              <div className="flex items-center">
+                                 <div className="w-20 h-20 rounded bg-slate-200 flex-shrink-0">
+                                    <img className="h-full w-full" src={product?.productImage} alt="" />
+                                 </div>
+                              </div>
+                           </td>
+                           <td className="border-b border-gray-200 bg-white px-3 py-3 text-sm">
+                              <p className="whitespace-no-wrap">{product?.productName}</p>
+                           </td>
+                           <td className="border-b border-gray-200 bg-white px-3 py-3 text-sm">
+                              <p className="whitespace-no-wrap">{product?.productQuantity}</p>
+                           </td>
+                           <td className="border-b border-gray-200 bg-white px-3 py-3 text-sm">
+                              <p className="whitespace-no-wrap">${product?.discount}</p>
+                           </td>
+                           <td className="border-b border-gray-200 bg-white px-3 py-3 text-sm">
+                              <p className="whitespace-no-wrap">${product?.sellingPrice}</p>
+                           </td>
+
+                           <td className="border border-gray-200 bg-white py-3 text-sm">
+                              <div className='flex items-center justify-center gap-1'>
+                                 <button onClick={() => handleAddToCheckOut(product)} className="inline-flex items-center justify-center w-10 h-10 text-black transition-colors duration-150 bg-green-300 rounded-lg focus:shadow-outline hover:bg-green-800 hover:text-white">
+                                    <ShoppingCartCheckoutIcon sx={{ width: 20 }}></ShoppingCartCheckoutIcon>
+                                 </button>
+                              </div>
+                           </td>
+                        </tr>
+                     </tbody>)}
+               </table>
             </div>
+            {/* ================================================================ */}
             <div className="flex flex-col items-center border-t bg-white px-3 py-3 sm:flex-row sm:justify-between">
                <span className="text-xs text-gray-600 sm:text-sm"> Showing {products?.length} to {products?.length} of {products?.length} Entries </span>
                <div className="mt-2 inline-flex sm:mt-0">

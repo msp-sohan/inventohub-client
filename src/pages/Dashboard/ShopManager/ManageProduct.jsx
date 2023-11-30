@@ -99,9 +99,10 @@ const ManageProduct = () => {
                   </button>
                </form>
             </div>
-            <div className="overflow-y-hidden rounded-lg border w-[400px] md:w-full">
-               <div className="">
-                  <table className="overflow-x-auto w-full">
+            {/* Table Start */}
+            {/* <div className="overflow-y-hidden rounded-lg border  md:w-full">
+               <div className="w-[calc(100vw-32px)]">
+                  <table className="overflow-x-auto w-screen">
                      <thead>
                         <tr className="bg-blue-600 text-left text-xs font-semibold uppercase tracking-widest text-white">
                            <th className="px-3 py-3">ID</th>
@@ -150,12 +151,66 @@ const ManageProduct = () => {
                      }
                   </table>
                </div>
-               <div className="flex flex-col items-center border-t bg-white px-3 py-3 sm:flex-row sm:justify-between">
-                  <span className="text-xs text-gray-600 sm:text-sm"> Showing {products?.length} to {products?.length} of {products?.length} Entries </span>
-                  <div className="mt-2 inline-flex sm:mt-0">
-                     <button className="mr-2 h-12 w-12 rounded-full border text-sm font-semibold text-gray-600 transition duration-150 hover:bg-gray-100">Prev</button>
-                     <button className="h-12 w-12 rounded-full border text-sm font-semibold text-gray-600 transition duration-150 hover:bg-gray-100">Next</button>
-                  </div>
+
+            </div> */}
+            {/* ==================== */}
+            <div className="mt-12 grid grid-cols-1 overflow-x-auto">
+               <table className="w-full divide-y border rounded divide-gray-200 overflow-x-auto">
+                  <thead className="bg-blue-300 text-black">
+                     <tr className="bg-blue-600 text-left text-xs font-semibold uppercase tracking-widest text-white">
+                        <th className="px-3 py-3">ID</th>
+                        <th className="px-3 py-3">Product Image</th>
+                        <th className="px-3 py-3">Product Name </th>
+                        <th className="px-3 py-3">Product Quantity</th>
+                        <th className="px-3 py-3">Sale Count</th>
+                        <th className="px-3 py-3 text-center">Action</th>
+                     </tr>
+                  </thead>
+                  {
+                     !products?.length ? "" : <tbody className="text-gray-500 ">
+                        {products?.map((product, index) => <tr key={product._id} className='overflow-hidden'>
+                           <td className="border-b  border-gray-200 bg-white px-3 py-3 text-sm">
+                              <p className="whitespace-no-wrap">{index + 1}</p>
+                           </td>
+                           <td className="border-b border-gray-200 bg-white px-3 py-3 text-sm">
+                              <div className="flex items-center">
+                                 <div className="w-20 h-20 rounded bg-slate-200 flex-shrink-0">
+                                    <img className="h-full w-full" src={product?.productImage} alt="" />
+                                 </div>
+                              </div>
+                           </td>
+                           <td className="border-b border-gray-200 bg-white px-3 py-3 text-sm">
+                              <p className="whitespace-no-wrap">{product?.productName}</p>
+                           </td>
+                           <td className="border-b border-gray-200 bg-white px-3 py-3 text-sm">
+                              <p className="whitespace-no-wrap">{product?.productQuantity}</p>
+                           </td>
+                           <td className="border-b border-gray-200 bg-white px-3 py-3 text-sm">
+                              <p className="whitespace-no-wrap">{product?.saleCount}</p>
+                           </td>
+
+                           <td className="border border-gray-200 bg-white py-3 text-sm">
+                              <div className='flex items-center justify-center gap-1'>
+                                 <button onClick={() => handleOpen(product)} className="inline-flex items-center justify-center w-10 h-10 mr-2 text-pink-100 transition-colors duration-150 bg-green-700 rounded-lg focus:shadow-outline hover:bg-green-900">
+                                    <BorderColorTwoToneIcon />
+                                 </button>
+                                 <button onClick={() => handleDeleteProduct(product?._id)} className="inline-flex items-center justify-center w-10 h-10 text-pink-100 transition-colors duration-150 bg-pink-700 rounded-lg focus:shadow-outline hover:bg-pink-800">
+                                    <Delete sx={{ width: 20 }}></Delete>
+                                 </button>
+                              </div>
+                           </td>
+                        </tr>)}
+                     </tbody>
+                  }
+               </table>
+            </div>
+            {/* ==================== */}
+            {/* Table End */}
+            <div className="flex flex-col items-center border-t bg-white px-3 py-3 sm:flex-row sm:justify-between">
+               <span className="text-xs text-gray-600 sm:text-sm"> Showing {products?.length} to {products?.length} of {products?.length} Entries </span>
+               <div className="mt-2 inline-flex sm:mt-0">
+                  <button className="mr-2 h-12 w-12 rounded-full border text-sm font-semibold text-gray-600 transition duration-150 hover:bg-gray-100">Prev</button>
+                  <button className="h-12 w-12 rounded-full border text-sm font-semibold text-gray-600 transition duration-150 hover:bg-gray-100">Next</button>
                </div>
             </div>
          </div>

@@ -4,7 +4,7 @@ import { Fragment } from 'react'
 import { loadStripe } from '@stripe/stripe-js'
 import CheckoutForm from './CheckoutForm'
 const stripePromise = loadStripe(import.meta.env.VITE_Payment_Gateway_PK)
-export default function PurchaseModal({ closeModal, isOpen, paymentInfo }) {
+export default function PurchaseModal({ closeModal, isOpen, paymentInfo, checkouts, handleAddAllSales, genPDF }) {
 
    return (
       <Transition appear show={isOpen} as={Fragment}>
@@ -37,7 +37,7 @@ export default function PurchaseModal({ closeModal, isOpen, paymentInfo }) {
                            Please Pay by Using Stripe
                         </Dialog.Title>
                         <Elements stripe={stripePromise}>
-                           <CheckoutForm closeModal={closeModal} paymentInfo={paymentInfo}></CheckoutForm>
+                           <CheckoutForm closeModal={closeModal} handleAddAllSales={handleAddAllSales} paymentInfo={paymentInfo} checkouts={checkouts} genPDF={genPDF}></CheckoutForm>
                         </Elements>
                      </Dialog.Panel>
                   </Transition.Child>

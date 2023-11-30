@@ -59,41 +59,40 @@ const SaleSummary = () => {
    return (
       <>
          <Helmat title="InventoHub || Sale Summary" />
-         <div className="grid grid-cols-1 gap-4 lg:gap-20 px-4 mt-8 sm:grid-cols-3 sm:px-8">
+         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 px-4 mt-8 lg:gap-4 xl:gap-20 sm:px-8">
             <div className="flex items-center bg-white border rounded-sm overflow-hidden shadow">
-               <div className="p-4 bg-green-400">
-                  <TbMoneybag className="w-12 h-12 text-white" />
-
+               <div className="p-4 lg:p-2 xl:p-4 bg-green-400">
+                  <TbMoneybag className="w-12 h-12 lg:w-9 lg:h-9 xl:w-12 xl:h-12  text-white" />
                </div>
-               <div className="px-4 text-gray-700">
+               <div className="px-4 lg:px-2 xl:px-4 text-gray-700">
                   <h3 className="text-sm tracking-wider">Total Income</h3>
                   <p className="text-3xl">${adminData?.income}</p>
                </div>
             </div>
             <div className="flex items-center bg-white border rounded-sm overflow-hidden shadow">
-               <div className="p-4 bg-blue-400">
-                  <GrMoney className="w-12 h-12 text-white" />
+               <div className="p-4 lg:p-2 xl:p-4 bg-blue-400">
+                  <GrMoney className="w-12 h-12 lg:w-9 lg:h-9 xl:w-12 xl:h-12 text-white" />
                </div>
-               <div className="px-4 text-gray-700">
+               <div className="px-4 lg:px-2 xl:px-4 text-gray-700">
                   <h3 className="text-sm tracking-wider">Total Product</h3>
                   <p className="text-3xl">{allProduct?.length}</p>
                </div>
             </div>
             <div className="flex items-center bg-white border rounded-sm overflow-hidden shadow">
-               <div className="p-4 bg-indigo-400">
-                  <FcSalesPerformance className="w-12 h-12 text-white" />
+               <div className="p-4 lg:p-2 xl:p-4 bg-indigo-400">
+                  <FcSalesPerformance className="w-12 h-12 lg:w-9 lg:h-9 xl:w-12 xl:h-12 text-white" />
                </div>
-               <div className="px-4 text-gray-700">
+               <div className="px-4 lg:px-2 xl:px-4 text-gray-700">
                   <h3 className="text-sm tracking-wider">Total Sales</h3>
                   <p className="text-3xl">{totalSale?.totalSales}</p>
                </div>
             </div>
          </div>
-         <div className="mt-12">
-            <div className="flex justify-center items-center">
-               <h2 className="text-2xl md:text-3xl font-semibold border-b-4 pb-1 my-6 border-black">All User Info</h2>
-            </div>
-            <table className="min-w-full divide-y border rounded divide-gray-200 overflow-x-auto">
+         <div className="flex justify-center items-center">
+            <h2 className="text-2xl md:text-3xl font-semibold border-b-4 pb-1 my-6 border-black">All User Info</h2>
+         </div>
+         <div className="mt-12 grid grid-cols-1 overflow-x-auto">
+            <table className="w-full divide-y border rounded divide-gray-200 overflow-x-auto">
                <thead className="bg-blue-300 text-black">
                   <tr>
                      <th scope="col" className="px-6 py-3 text-left text-base font-bold uppercase tracking-wider">#</th>

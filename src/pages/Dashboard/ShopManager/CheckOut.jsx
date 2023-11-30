@@ -8,13 +8,30 @@ import toast from "react-hot-toast";
 import useAuth from "../../../hooks/useAuth";
 import Helmat from "../../../components/Helmat/Helmat";
 import { useNavigate } from "react-router-dom";
+import PurchaseModal from "./Modals/PurchaseModal";
+import { useState } from "react";
 
 const CheckOut = () => {
    const { user } = useAuth()
    const { data: checkouts = [], refetch } = useCheckout()
+
+   let [isOpen, setIsOpen] = useState(false)
+
+   // useEffect(() => {
+   //    if (!isLoading) {
+   //       setCheckouts(data);
+   //    }
+   // }, [isLoading, data]);
+
+   const closeModal = () => {
+      setIsOpen(false)
+   }
+
+   const [price, setPrice] = useState(0)
+
    const navigate = useNavigate()
 
-   const returnData = checkouts.map(item => { return item })
+   const item = checkouts?.map(item => { return item })
 
    const totalPrice = parseFloat(checkouts?.reduce((price, item) => item?.sellingPrice + price, 0)).toFixed(2)
 
@@ -35,9 +52,14 @@ const CheckOut = () => {
    //    }
    // }
 
-   const handleAddAllSales = async (salesData) => {
+   const handleCheckout = () => {
+      setIsOpen(true)
+      setPrice(totalPrice)
+   }
+
+   const handleAddAllSales = async () => {
       try {
-         await addToAllSale(salesData)
+         await addToAllSale(item)
          Swal.fire({
             position: "top-end",
             icon: "success",
@@ -58,7 +80,7 @@ const CheckOut = () => {
 
    // =============================================
    // Genarate PDF by jsPDF
-   function genPDF(item) {
+   function genPDF() {
       var doc = new jsPDF('p', 'px', 'a4');
       doc.setFontSize(24);
       doc.text('Invoice', 200, 50);
@@ -164,17 +186,18 @@ const CheckOut = () => {
                         </span>
                      </div>
 
-                     <button onClick={() => genPDF(returnData)} className="px-6 w-full  py-3 text-blue-500 border border-blue-500 rounded-md md:w-auto hover:text-gray-100 hover:bg-blue-600 dark:border-gray-800 dark:hover:bg-gray-800 dark:text-gray-300">
-                        <p onClick={() => handleAddAllSales(checkouts)}>All Get Paid</p>
+                     <button className="px-6 w-full  py-3 text-blue-500 border border-blue-500 rounded-md md:w-auto hover:text-gray-100 hover:bg-blue-600 dark:border-gray-800 dark:hover:bg-gray-800 dark:text-gray-300">
+                        <p onClick={() => handleCheckout(checkouts)}>All Get Paid</p>
                      </button>
 
                   </div>
                   <div className="flex flex-wrap items-center justify-between gap-4 ">
-                     {/* <button className="bg-green-500 p-3 hover:text-white">Try Pdf</button> */}
+                     {/* <button onClick={genPDF} className="bg-green-500 p-3 hover:text-white">Try Pdf</button> */}
                   </div>
                </div>
             </div>
          </section>
+         <PurchaseModal isOpen={isOpen} closeModal={closeModal} paymentInfo={{ price }} handleAddAllSales={handleAddAllSales} checkouts={checkouts} genPDF={genPDF}></PurchaseModal>
       </>
    );
 };

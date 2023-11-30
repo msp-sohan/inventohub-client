@@ -6,7 +6,7 @@ import useAuth from '../../../../hooks/useAuth';
 import toast from 'react-hot-toast';
 import { TbFidgetSpinner } from 'react-icons/tb';
 
-const CheckoutForm = ({ closeModal, paymentInfo }) => {
+const CheckoutForm = ({ closeModal, paymentInfo, handleAddAllSales, genPDF }) => {
    const stripe = useStripe();
    const elements = useElements();
    const [clientSecret, setClientSecret] = useState('')
@@ -70,6 +70,8 @@ const CheckoutForm = ({ closeModal, paymentInfo }) => {
                await updatelimit(user?.email, paymentInfo)
                const text = `Payment successfull! ${paymentIntent.id}`
                toast.success(text)
+               handleAddAllSales()
+               genPDF()
                closeModal()
             } catch (error) {
                toast.error(error.message)
@@ -107,9 +109,10 @@ const CheckoutForm = ({ closeModal, paymentInfo }) => {
                {processing ? (
                   <TbFidgetSpinner className='m-auto animate-spin' size={24} />
                ) : (
-                  `Pay - ${paymentInfo?.price}$`
+                  `Pay ${paymentInfo?.price}$`
                )}
             </button>
+            {/* <button onClick={() => handleAddAllSales(checkouts)}>btn</button> */}
          </form>
       </>
    )

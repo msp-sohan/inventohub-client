@@ -1,5 +1,5 @@
 import SectionTitle from "../../../../components/SectionTitle/SectionTitle";
-
+import 'aos/dist/aos.css';
 import AOS from 'aos';
 AOS.init();
 

@@ -21,6 +21,7 @@ import useRole from '../hooks/useRole';
 import useAllShops from '../hooks/useAllShops';
 
 const drawerWidth = 240;
+const shopLogo = 'https://i.ibb.co/PFhTpK2/Invebto-Hub-2.png'
 
 const DashboardLayout = (props) => {
    const { user, logOut, loading } = useAuth()
@@ -38,7 +39,7 @@ const DashboardLayout = (props) => {
    const drawer = (
       <div style={{ display: 'flex', flexDirection: 'column', height: '100%', marginBottom: '20px' }}>
          {/* Remove the unnecessary Toolbar component here */}
-         <img src={shopUser?.shopLogo} alt="" className='w-[80%] max-h-16' />
+         <img src={shopUser?.shopLogo ? shopUser?.shopLogo : shopLogo} alt="" className='w-[80%] max-h-16' />
          <Divider />
          <List sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
             {role === 'manager' && <ManagerMenu />}
@@ -52,7 +53,7 @@ const DashboardLayout = (props) => {
          </div>
          <div>
             <hr />
-            <button onClick={logOut} className='flex w-full items-center px-4 py-2 mt-5 text-gray-600 hover:bg-gray-300 hover:text-gray-700 transition-colors duration-300 transform'>
+            <button onClick={logOut} className='flex items-center px-4 py-2 mt-5 text-gray-600 hover:bg-gray-300 hover:text-gray-700 transition-colors duration-300 transform'>
                <Logout className='w-5 h-5' />
                <span className='mx-4 font-medium'>Logout</span>
             </button>
@@ -89,7 +90,7 @@ const DashboardLayout = (props) => {
                <Drawer
                   variant="persistent"
                   open
-                  sx={{ display: { xs: 'none', sm: 'block' }, '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth } }} >
+                  sx={{ display: { xs: 'none', sm: 'block' }, '& .MuiDrawer-paper': { boxSizing: 'border-box', } }} >
                   {/* Large Devie */}
                   {drawer}
                </Drawer>
