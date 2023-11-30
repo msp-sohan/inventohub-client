@@ -1,14 +1,14 @@
 import useRole from "../../../hooks/useRole";
-import SaleSummary from "../Admin/SaleSummary";
-import SalesSummary from "../ShopManager/SalesSummary";
+import AdminHome from "../Admin/AdminHome";
+import ManagerHome from "../ShopManager/ManagerHome";
 
 const DashboardHome = () => {
    const { role } = useRole()
    return (
       <>
          <div>
-            {role === 'admin' && <SaleSummary />}
-            {role === 'manager' && <SalesSummary />}
+            {role === 'admin' && <AdminHome />}
+            {role === 'manager' && <ManagerHome />}
          </div>
       </>
    );
