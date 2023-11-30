@@ -11,7 +11,7 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { Login, Person2 } from '@mui/icons-material';
 import useAuth from '../../../hooks/useAuth';
@@ -25,6 +25,7 @@ const shopLogo = 'https://i.ibb.co/PFhTpK2/Invebto-Hub-2.png'
 
 const Navbar = () => {
    const { user, logOut, loading } = useAuth({})
+   const navigate = useNavigate()
 
    const { role, } = useRole()
 
@@ -48,6 +49,8 @@ const Navbar = () => {
 
    const handleLogout = () => {
       logOut()
+      navigate("/")
+
    }
 
    if (loading) {
@@ -78,7 +81,7 @@ const Navbar = () => {
 
 
    return (
-      <AppBar sx={{ backgroundColor: '#387ae8' }} position="static">
+      <AppBar sx={{ backgroundColor: '#387ae8' }} position="sticky">
          <Container maxWidth="xl">
             <Toolbar disableGutters>
                <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>

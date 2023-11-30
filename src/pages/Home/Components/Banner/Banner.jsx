@@ -109,8 +109,8 @@ const Banner = () => {
             <SwiperSlide>
                <section className="sm:mt-6 lg:mt-8 mt-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                   <div className="my-10 mx-auto max-w-7xl sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28 flex gap-3 lg:flex-justify lg:flex flex-col lg:flex-row">
-                     <div className="sm:text-center lg:text-left">
-                        <h1 className="text-4xl tracking-tight font-extrabold text-gray-800 sm:text-4xl md:text-5xl">
+                     <div className="sm:text-center flex-1 lg:text-left">
+                        <h1 className="text-4xl tracking-tight font-extrabold text-gray-800 sm:text-4xl md:text-4xl">
                            <span className="block xl:inline">Efficient Data Management for Your</span>
                            <span className="block text-indigo-600 xl:inline"> Inventory Operations</span>
                         </h1>
@@ -134,7 +134,7 @@ const Banner = () => {
                            </div>
                         </div>
                      </div>
-                     <div className="lg:inset-y-0 lg:right-0 lg:w-1/2 my-4">
+                     <div className="lg:inset-y-0 lg:right-0 lg:w-1/2 my-4 flex-1">
                         <img className="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full" src="https://i.ibb.co/wNJPNW5/photo-1674027392851-7b34f21b07ee.jpg" alt="" />
                      </div>
 

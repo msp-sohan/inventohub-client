@@ -27,7 +27,7 @@ const SalesSummary = () => {
       <>
          <Helmat title="InventoHub | Sales Summary" />
          <div className="ease-soft-in-out xl:ml-68.5 relative h-full max-h-screen rounded-xl transition-all duration-200" id="panel">
-            <div className="w-full px-6 py-6 mx-auto  text-slate-500">
+            <div className="w-full py-6 mx-auto  text-slate-500">
                <div className="flex flex-wrap -mx-3 removable">
                   {/* Total Sale */}
                   <div className="w-full max-w-full px-3 mb-6 lg:w-1/3 sm:flex-none xl:mb-0">
@@ -96,7 +96,9 @@ const SalesSummary = () => {
             </div>
 
          </div>
-         <SalesHistory saledAllData={saledAllData}></SalesHistory>
+         <div className="overflow-y-hidden rounded-lg border">
+            <SalesHistory saledAllData={saledAllData}></SalesHistory>
+         </div>
       </>
    );
 };

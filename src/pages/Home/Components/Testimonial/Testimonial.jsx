@@ -1,4 +1,7 @@
 import { FaQuoteLeft } from "react-icons/fa";
+import 'aos/dist/aos.css';
+import AOS from 'aos';
+AOS.init();
 
 const Testimonial = () => {
    return (

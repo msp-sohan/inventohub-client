@@ -16,7 +16,7 @@ const ProtectedRoute = ({ children }) => {
       return children;
    }
 
-   return <Navigate to='/dashboard' state={{ from: location }} replace={true} />;
+   return <Navigate to='/' state={{ from: location }} replace={true} />;
 };
 
 export default ProtectedRoute;

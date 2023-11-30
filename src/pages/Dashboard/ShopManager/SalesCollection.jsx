@@ -62,7 +62,7 @@ const SalesCollection = () => {
          <Helmat title="InventoHub || Sales Collection" />
          <div className="mx-auto max-w-full py-8">
             <div className="flex items-center justify-between border-y-2 mb-8">
-               <Typography align="center" variant='h2' textAlign={'center'} maxWidth='xl'>
+               <Typography align="center" variant='h3' textAlign={'center'} maxWidth='xl'>
                   Total Sales Collection
                </Typography>
             </div>
@@ -82,11 +82,11 @@ const SalesCollection = () => {
                   </button>
                </form>
             </div>
-            <div className="overflow-y-hidden rounded-lg border">
+            <div className="overflow-y-hidden rounded-lg border w-[400px] md:w-[500px] lg:w-full">
                <div className="">
-                  <table className="w-full">
-                     <thead>
-                        <tr className="bg-blue-600 text-left text-xs font-semibold uppercase tracking-widest text-white">
+                  <table className="overflow-x-auto w-full">
+                     <thead className='overflow-x-auto'>
+                        <tr className="bg-blue-600 text-left text-xs overflow-x-auto font-semibold uppercase tracking-widest text-white">
                            <th className="px-3 py-3">Product ID</th>
                            <th className="px-3 py-3">Product Image</th>
                            <th className="px-3 py-3">Product Name </th>
@@ -97,8 +97,8 @@ const SalesCollection = () => {
                         </tr>
                      </thead>
                      {products?.map((product) =>
-                        <tbody key={product._id} className="text-gray-500 ">
-                           <tr className=''>
+                        <tbody key={product._id} className="text-gray-500 overflow-x-auto">
+                           <tr className='overflow-x-auto'>
                               <td className="border-b  border-gray-200 bg-white px-3 py-3 text-sm">
                                  <p className="whitespace-no-wrap">{product?._id}</p>
                               </td>
@@ -133,12 +133,13 @@ const SalesCollection = () => {
                         </tbody>)}
                   </table>
                </div>
-               <div className="flex flex-col items-center border-t bg-white px-3 py-3 sm:flex-row sm:justify-between">
-                  <span className="text-xs text-gray-600 sm:text-sm"> Showing {products?.length} to {products?.length} of {products?.length} Entries </span>
-                  <div className="mt-2 inline-flex sm:mt-0">
-                     <button className="mr-2 h-12 w-12 rounded-full border text-sm font-semibold text-gray-600 transition duration-150 hover:bg-gray-100">Prev</button>
-                     <button className="h-12 w-12 rounded-full border text-sm font-semibold text-gray-600 transition duration-150 hover:bg-gray-100">Next</button>
-                  </div>
+
+            </div>
+            <div className="flex flex-col items-center border-t bg-white px-3 py-3 sm:flex-row sm:justify-between">
+               <span className="text-xs text-gray-600 sm:text-sm"> Showing {products?.length} to {products?.length} of {products?.length} Entries </span>
+               <div className="mt-2 inline-flex sm:mt-0">
+                  <button className="mr-2 h-12 w-12 rounded-full border text-sm font-semibold text-gray-600 transition duration-150 hover:bg-gray-100">Prev</button>
+                  <button className="h-12 w-12 rounded-full border text-sm font-semibold text-gray-600 transition duration-150 hover:bg-gray-100">Next</button>
                </div>
             </div>
          </div >

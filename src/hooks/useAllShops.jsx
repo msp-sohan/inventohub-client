@@ -1,15 +1,15 @@
 
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "./useAxiosSecure";
-import useAuth from "./useAuth";
+// import useAuth from "./useAuth";
 
 const useAllShops = () => {
-   const { user } = useAuth()
+   // const { user } = useAuth()
    const axios = useAxiosSecure();
    const { data, isLoading } = useQuery({
       queryKey: ['allShops'],
       queryFn: async () => {
-         const response = await axios.get(`/shops?email=${user?.email}`);
+         const response = await axios.get(`/shops`);
          return response.data;
       }
    })

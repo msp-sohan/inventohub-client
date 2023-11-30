@@ -12,9 +12,9 @@ const AdminRoute = ({ children }) => {
    if (loading) {
       return <Loader></Loader>
    }
-   if (user || role === 'manager') {
+   if (user && role === 'manager') {
       return children
    }
-   return <Navigate to="/" state={{ from: location }} replace></Navigate>
+   return <Navigate to="/forbidden" state={{ from: location }} replace></Navigate>
 };
 export default AdminRoute;

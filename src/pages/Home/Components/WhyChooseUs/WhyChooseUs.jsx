@@ -1,5 +1,7 @@
 import SectionTitle from "../../../../components/SectionTitle/SectionTitle";
 
+import AOS from 'aos';
+AOS.init();
 
 const WhyChooseUs = () => {
    return (

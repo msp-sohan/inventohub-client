@@ -1,5 +1,5 @@
 import Swal from "sweetalert2";
-import { addToAllSale, addToSale } from "../../../api/sales";
+import { addToAllSale } from "../../../api/sales";
 import useCheckout from "../../../hooks/useCheckout";
 import EmptyPage from "../../EmptyPage/EmptyPage";
 import jsPDF from "jspdf";
@@ -18,21 +18,22 @@ const CheckOut = () => {
 
    const totalPrice = parseFloat(checkouts?.reduce((price, item) => item?.sellingPrice + price, 0)).toFixed(2)
 
-   const handleAddSales = async (item) => {
-      try {
-         await addToSale(item)
-         Swal.fire({
-            position: "center",
-            icon: "success",
-            title: "Get Paid Successfully",
-            showConfirmButton: false,
-            timer: 1500
-         });
-         refetch()
-      } catch (error) {
-         toast.error(error.message)
-      }
-   }
+   // Single item checkout
+   // const handleAddSales = async (item) => {
+   //    try {
+   //       await addToSale(item)
+   //       Swal.fire({
+   //          position: "center",
+   //          icon: "success",
+   //          title: "Get Paid Successfully",
+   //          showConfirmButton: false,
+   //          timer: 1500
+   //       });
+   //       refetch()
+   //    } catch (error) {
+   //       toast.error(error.message)
+   //    }
+   // }
 
    const handleAddAllSales = async (salesData) => {
       try {
@@ -135,11 +136,12 @@ const CheckOut = () => {
                                  </p>
                               </div>
                            </div>
-                           <div onClick={() => genPDF(item)}>
+                           {/* Single Item */}
+                           {/* <div onClick={() => genPDF(item)}>
                               <button onClick={() => handleAddSales(item)} className="w-full px-6 py-3 text-gray-100 bg-blue-500 rounded-md md:w-auto dark:text-gray-300 hover:bg-blue-600 dark:hover:bg-gray-800 dark:bg-gray-700">
                                  Get Paid
                               </button>
-                           </div>
+                           </div> */}
                         </div>
                      )
                   }

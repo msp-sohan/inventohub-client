@@ -99,9 +99,9 @@ const ManageProduct = () => {
                   </button>
                </form>
             </div>
-            <div className="overflow-y-hidden rounded-lg border">
-               <div className="overflow-x-auto">
-                  <table className="w-full">
+            <div className="overflow-y-hidden rounded-lg border w-[400px] md:w-full">
+               <div className="">
+                  <table className="overflow-x-auto w-full">
                      <thead>
                         <tr className="bg-blue-600 text-left text-xs font-semibold uppercase tracking-widest text-white">
                            <th className="px-3 py-3">ID</th>

@@ -4,6 +4,9 @@ import { useManagerAllSales } from "../../../hooks/useAllSales";
 import Loader from "../../Shared/Loader";
 import EmptyPage from "../../../pages/EmptyPage/EmptyPage";
 
+
+
+
 const SalesHistory = () => {
    const [page, setPage] = useState(0);
    const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -29,9 +32,9 @@ const SalesHistory = () => {
 
    return (
       <>
-         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
-            <h2 className="text-2xl font-bold mb-4 bg-blue-400 p-2 text-white">Sales History</h2>
-            <div className="">
+         <div className="container mx-auto py-8">
+            <h2 className="text-2xl font-bold mb-4 bg-blue-400 p-2  text-white">Sales History</h2>
+            <div className="overflow-x-auto">
                {
                   sortedData?.length === 0 ? <EmptyPage /> : <table id="example" className=" w-full table-auto">
                      <thead className="text-xl bg-blue-200 text-left">
@@ -58,6 +61,7 @@ const SalesHistory = () => {
                }
             </div>
          </div>
+
          {
             sortedData?.length === 0 ? "" : <TablePagination
                component="div"

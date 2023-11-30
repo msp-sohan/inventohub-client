@@ -18,13 +18,15 @@ import ManagerMenu from '../components/Dashboard/Menu/ManagerMenu';
 import Loader from '../components/Shared/Loader';
 import Helmat from '../components/Helmat/Helmat';
 import useRole from '../hooks/useRole';
+import useAllShops from '../hooks/useAllShops';
 
 const drawerWidth = 240;
-const shopLogo = 'https://i.ibb.co/PFhTpK2/Invebto-Hub-2.png'
 
 const DashboardLayout = (props) => {
-   const { logOut, loading } = useAuth()
+   const { user, logOut, loading } = useAuth()
    const { role } = useRole()
+   const { data } = useAllShops()
+   const shopUser = data?.find(shop => shop?.email === user?.email)
 
    const { window } = props;
    const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -36,7 +38,7 @@ const DashboardLayout = (props) => {
    const drawer = (
       <div style={{ display: 'flex', flexDirection: 'column', height: '100%', marginBottom: '20px' }}>
          {/* Remove the unnecessary Toolbar component here */}
-         <img src={shopLogo} alt="" className='w-[80%]' />
+         <img src={shopUser?.shopLogo} alt="" className='w-[80%] max-h-16' />
          <Divider />
          <List sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
             {role === 'manager' && <ManagerMenu />}
@@ -94,7 +96,7 @@ const DashboardLayout = (props) => {
             </Box>
             <Box component="main" sx={{ flexGrow: 1, width: { sm: '100%', md: `calc(100% - ${drawerWidth}px)` } }} >
                <Toolbar />
-               <div className='min-h-[calc(100vh-16vh)] p-6'>
+               <div className='min-h-[calc(100vh-16vh)] p-3 lg:p-6'>
                   <Outlet />
                </div>
                <Copyright></Copyright>

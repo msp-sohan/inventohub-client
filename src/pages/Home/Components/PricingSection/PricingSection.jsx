@@ -1,5 +1,8 @@
 import { CheckCircle } from "@mui/icons-material";
 import SectionTitle from "../../../../components/SectionTitle/SectionTitle";
+import 'aos/dist/aos.css';
+import AOS from 'aos';
+AOS.init();
 
 const PricingSection = () => {
    return (

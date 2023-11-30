@@ -1,6 +1,5 @@
 
 import { useQuery } from "@tanstack/react-query";
-import useAxiosPublic from "./useAxiosPublic";
 import useAuth from "./useAuth";
 import useAxiosSecure from "./useAxiosSecure";
 
@@ -20,7 +19,7 @@ const useAllSales = ({ page = 0, rowsPerPage = 0 }) => {
 export default useAllSales;
 
 export const useManagerAllSales = ({ page = 0, rowsPerPage = 10 }) => {
-   const axios = useAxiosPublic();
+   const axios = useAxiosSecure();
    const { user } = useAuth()
    const { data, isLoading } = useQuery({
       queryKey: ['ManagerAllSales', page, rowsPerPage, user?.email],
