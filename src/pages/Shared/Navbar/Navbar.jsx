@@ -19,6 +19,7 @@ import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import Logo from '../../../components/Logo/Logo';
 import Loader from '../../../components/Shared/Loader';
 import useRole from '../../../hooks/useRole';
+import toast from 'react-hot-toast';
 
 const userIcon = 'https://i.ibb.co/6HtdFTk/585e4bf3cb11b227491c339a.png'
 const shopLogo = 'https://i.ibb.co/PFhTpK2/Invebto-Hub-2.png'
@@ -49,9 +50,15 @@ const Navbar = () => {
 
    const handleLogout = () => {
       logOut()
-      navigate("/")
+         .then(() => {
+            toast.success('Logout Successfully ');
+            navigate('/login');
+         })
+         .catch((error) => {
+            toast.error(error.message);
+         });
+   };
 
-   }
 
    if (loading) {
       return <Loader />

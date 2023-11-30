@@ -60,7 +60,7 @@ const SignUp = () => {
 
          // get token
          await getToken(result?.user?.email)
-         navigate('/')
+         navigate('/create-store')
          toast.success('Sign up Successfull')
       } catch (error) {
          toast.error(error.message)

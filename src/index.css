@@ -66,11 +66,11 @@
 	width: 50%;
 	position: absolute;
 }
-
+/* 
 .shop-container {
 	display: grid;
 	grid-template-columns: 4fr 1fr;
-	/* position: relative; */
+	position: relative;
 }
 
 .products-container {
@@ -108,7 +108,7 @@
 .pagination select {
 	padding: 10px;
 	font-size: 16px;
-}
+} */
 
 /* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;

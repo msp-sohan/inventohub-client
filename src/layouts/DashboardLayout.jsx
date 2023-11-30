@@ -7,7 +7,7 @@ import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
 import Toolbar from '@mui/material/Toolbar';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import { Home, Logout } from '@mui/icons-material';
 import useAuth from '../hooks/useAuth';
 import DashboardNavbar from '../components/Dashboard/Navbar/DashboardNavbar';
@@ -19,6 +19,7 @@ import Loader from '../components/Shared/Loader';
 import Helmat from '../components/Helmat/Helmat';
 import useRole from '../hooks/useRole';
 import useAllShops from '../hooks/useAllShops';
+import toast from 'react-hot-toast';
 
 const drawerWidth = 240;
 const shopLogo = 'https://i.ibb.co/PFhTpK2/Invebto-Hub-2.png'
@@ -26,6 +27,7 @@ const shopLogo = 'https://i.ibb.co/PFhTpK2/Invebto-Hub-2.png'
 const DashboardLayout = (props) => {
    const { user, logOut, loading } = useAuth()
    const { role } = useRole()
+   const navigate = useNavigate()
    const { data } = useAllShops()
    const shopUser = data?.find(shop => shop?.email === user?.email)
 
@@ -34,6 +36,17 @@ const DashboardLayout = (props) => {
 
    const handleDrawerToggle = () => {
       setMobileOpen(!mobileOpen);
+   };
+
+   const handleLogout = () => {
+      logOut()
+         .then(() => {
+            toast.success('Logout Successfully ');
+            navigate('/login');
+         })
+         .catch((error) => {
+            toast.error(error.message);
+         });
    };
 
    const drawer = (
@@ -53,7 +66,7 @@ const DashboardLayout = (props) => {
          </div>
          <div>
             <hr />
-            <button onClick={logOut} className='flex items-center px-4 py-2 mt-5 text-gray-600 hover:bg-gray-300 hover:text-gray-700 transition-colors duration-300 transform'>
+            <button onClick={handleLogout} className='flex items-center px-4 py-2 mt-5 text-gray-600 hover:bg-gray-300 hover:text-gray-700 transition-colors duration-300 transform'>
                <Logout className='w-5 h-5' />
                <span className='mx-4 font-medium'>Logout</span>
             </button>

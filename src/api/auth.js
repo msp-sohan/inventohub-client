@@ -22,6 +22,7 @@ export const getToken = async (email) => {
 // remove token from browsser
 export const clearCookie = async () => {
 	const { data } = await axiosSecure.get('/logout');
+	console.log('Token Delete', data);
 	return data;
 };
 

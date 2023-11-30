@@ -2,6 +2,9 @@ import { useState } from "react";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import PurchaseModal from "./Modals/PurchaseModal";
 import Helmat from "../../../components/Helmat/Helmat";
+import 'aos/dist/aos.css';
+import AOS from 'aos';
+
 
 const purchaseCardData = [
    { title: "Starter", limit: 200, price: 10 },
@@ -15,6 +18,7 @@ const Subscription = () => {
    const closeModal = () => {
       setIsOpen(false)
    }
+   AOS.init();
 
    const handlePrice = (cardData) => {
       setPaymenttInfo(cardData)
@@ -28,10 +32,10 @@ const Subscription = () => {
          <section className="flex items-center shadow-[0_3px_10px_rgb(0,0,0,0.2)] shadow-gray-500 font-poppins dark:bg-gray-900 ">
             <div className="justify-center flex-1 max-w-6xl px-4 py-4 mx-auto lg:py-0 md:px-6">
                <SectionTitle title="By Subscription, Increse your product Limit" subtitle="Choose a Plan" width="80%" />
-               <div className="flex flex-wrap justify-center -mx-3">
+               <div data-aos="zoom-in" className="flex flex-wrap justify-center -mx-3">
                   {
                      purchaseCardData.map(cardData =>
-                        <div data-aos="zoom-in" key={cardData.price} className="w-full px-3 mb-6 md:w-96 lg:w-1/2 xl:w-1/3">
+                        <div key={cardData.price} className="w-full px-3 mb-6 md:w-96 lg:w-1/2 xl:w-1/3">
                            <div className="flex flex-col items-center rounded-md shadow-md dark:bg-gray-800 bg-gray-50">
                               <div className="flex justify-center w-full bg-blue-100 rounded-b-full dark:bg-gray-700">
                                  <a href="#" className="py-6 text-blue-600 dark:text-gray-400 ">

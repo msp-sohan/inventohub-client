@@ -8,7 +8,7 @@ const DashboardHome = () => {
       <>
          <div>
             {role === 'admin' && <SaleSummary />}
-            {role === 'manage' && <SalesSummary />}
+            {role === 'manager' && <SalesSummary />}
          </div>
       </>
    );

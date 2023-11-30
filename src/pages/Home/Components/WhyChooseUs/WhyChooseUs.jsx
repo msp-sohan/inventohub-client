@@ -1,9 +1,7 @@
 import SectionTitle from "../../../../components/SectionTitle/SectionTitle";
-import 'aos/dist/aos.css';
-import AOS from 'aos';
-AOS.init();
 
 const WhyChooseUs = () => {
+
    return (
       <div className="bg-gray-100 dark:bg-gray-800">
          <section id="features" className="relative block px-6 pb-10 md:px-10  border-t border-b shadow-[0_3px_10px_rgb(0,0,0,0.2)] drop-shadow-2xl">
@@ -15,7 +13,7 @@ const WhyChooseUs = () => {
             </div>
 
             <div className="relative mx-auto max-w-7xl z-10 grid grid-cols-1 gap-10 pt-14 sm:grid-cols-2 lg:grid-cols-3">
-               <div data-aos="fade-up" className="rounded-md border p-8 text-center shadow-[rgba(50,50,93,0.25)_0px_6px_12px_-2px,_rgba(0,0,0,0.3)_0px_3px_7px_-3px] shadow-gray-500 bg-white">
+               <div className="rounded-md border p-8 text-center shadow-[rgba(50,50,93,0.25)_0px_6px_12px_-2px,_rgba(0,0,0,0.3)_0px_3px_7px_-3px] shadow-gray-500 bg-white">
                   <div
                      className="button-text mx-auto flex h-12 w-12 items-center justify-center rounded-md border"
                      style={{
@@ -49,7 +47,7 @@ const WhyChooseUs = () => {
                   </p>
                </div>
 
-               <div data-aos="fade-up" className="rounded-md border p-8 text-center shadow-[rgba(50,50,93,0.25)_0px_6px_12px_-2px,_rgba(0,0,0,0.3)_0px_3px_7px_-3px] shadow-gray-500 bg-white">
+               <div className="rounded-md border p-8 text-center shadow-[rgba(50,50,93,0.25)_0px_6px_12px_-2px,_rgba(0,0,0,0.3)_0px_3px_7px_-3px] shadow-gray-500 bg-white">
                   <div
                      className="button-text mx-auto flex h-12 w-12 items-center justify-center rounded-md border"
                      style={{
@@ -80,7 +78,7 @@ const WhyChooseUs = () => {
                   </p>
                </div>
 
-               <div data-aos="fade-up" className="rounded-md border p-8 text-center shadow-[rgba(50,50,93,0.25)_0px_6px_12px_-2px,_rgba(0,0,0,0.3)_0px_3px_7px_-3px] shadow-gray-500 bg-white">
+               <div className="rounded-md border p-8 text-center shadow-[rgba(50,50,93,0.25)_0px_6px_12px_-2px,_rgba(0,0,0,0.3)_0px_3px_7px_-3px] shadow-gray-500 bg-white">
                   <div
                      className="button-text mx-auto flex h-12 w-12 items-center justify-center rounded-md border"
                      style={{
