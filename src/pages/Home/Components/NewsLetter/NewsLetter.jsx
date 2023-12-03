@@ -7,8 +7,8 @@ const Newsletter = () => {
          <div className="justify-center flex-1 mx-auto shadow dark:bg-gray-900 bg-gray-50">
             <div className="relative">
                <div className="relative z-10 px-4 py-16 mx-auto max-w-7xl">
-                  <div className="flex flex-wrap items-center">
-                     <div className="w-full px-4 mb-6 lg:mb-0 lg:w-1/2">
+                  <div data-aos="fade-up" className="flex flex-wrap items-center">
+                     <div data-aos="fade-right" className="w-full px-4 mb-6 lg:mb-0 lg:w-1/2">
                         <span className="inline-block px-2 py-0.5 mb-4 text-xs leading-4 tracking-widest text-gray-100 bg-blue-500 rounded-md">
                            Newsletter
                         </span>
@@ -30,7 +30,7 @@ const Newsletter = () => {
                            </div>
                         </div>
                      </div>
-                     <div className="w-full px-4 mb-6 lg:mb-0 lg:w-1/2">
+                     <div data-aos="fade-left" className="w-full px-4 mb-6 lg:mb-0 lg:w-1/2">
                         <h2 className="mb-3 text-3xl font-semibold text-gray-900 sm:text-5xl dark:text-gray-400">
                            Join 100+ professionals in optimizing their inventory management
                         </h2>

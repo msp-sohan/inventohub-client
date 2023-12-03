@@ -5,14 +5,9 @@ import NewsLetter from "../Components/NewsLetter/NewsLetter";
 import PricingSection from "../Components/PricingSection/PricingSection";
 import Testimonial from "../Components/Testimonial/Testimonial";
 import WhyChooseUs from "../Components/WhyChooseUs/WhyChooseUs";
-import 'aos/dist/aos.css';
-import AOS from 'aos';
-import { useEffect } from "react";
 
 const Home = () => {
-   useEffect(() => {
-      AOS.init({ once: true });
-   }, []);
+
    return (
       <>
          <Helmat title="InventoHub || Home" />

@@ -10,7 +10,7 @@ import 'swiper/css/pagination';
 import './styles.css';
 
 // Import required modules
-import { EffectFade, Navigation, Pagination } from 'swiper/modules';
+import { EffectFade, Navigation, Pagination, Autoplay } from 'swiper/modules';
 import { Link } from 'react-router-dom';
 
 const Banner = () => {
@@ -23,11 +23,14 @@ const Banner = () => {
             pagination={{
                clickable: true,
             }}
+            autoplay={{
+               delay: 3000,
+               disableOnInteraction: false,
+            }}
             navigation={true}
-            modules={[EffectFade, Navigation, Pagination]}
+            modules={[EffectFade, Navigation, Pagination, Autoplay]}
             className="mySwiper"
          >
-
             <SwiperSlide>
                <div className="py-20 dark:bg-gray-700">
                   <div className="max-w-6xl mx-auto md:px-0 font-poppins">

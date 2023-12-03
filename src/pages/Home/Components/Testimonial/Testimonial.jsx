@@ -14,7 +14,7 @@ const Testimonial = () => {
                      empower businesses to thrive.</p>
                </div>
                <div className="flex ">
-                  <div className="grid grid-cols-1 gap-4 lg:gap-4 sm:gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                  <div data-aos="fade-up" className="grid grid-cols-1 gap-4 lg:gap-4 sm:gap-4 sm:grid-cols-2 lg:grid-cols-3">
                      <div className="mb-8 text-center bg-white rounded shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px] dark:bg-gray-700">
                         <div className="relative z-20 -mt-14 ">
                            <div className="p-8">

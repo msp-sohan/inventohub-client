@@ -17,7 +17,7 @@ import { Login, Person2 } from '@mui/icons-material';
 import useAuth from '../../../hooks/useAuth';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import Logo from '../../../components/Logo/Logo';
-import Loader from '../../../components/Shared/Loader';
+// import Loader from '../../../components/Shared/Loader';
 import useRole from '../../../hooks/useRole';
 import toast from 'react-hot-toast';
 
@@ -25,7 +25,7 @@ const userIcon = 'https://i.ibb.co/6HtdFTk/585e4bf3cb11b227491c339a.png'
 const shopLogo = 'https://i.ibb.co/PFhTpK2/Invebto-Hub-2.png'
 
 const Navbar = () => {
-   const { user, logOut, loading } = useAuth({})
+   const { user, logOut } = useAuth({})
    const navigate = useNavigate()
 
    const { role, } = useRole()
@@ -59,10 +59,10 @@ const Navbar = () => {
          });
    };
 
-
-   if (loading) {
-      return <Loader />
-   }
+   // this loading give me issue for aos effect
+   // if (loading) {
+   //    return <Loader />
+   // }
 
    // =============================================================================
    // Navbar Links
@@ -70,12 +70,12 @@ const Navbar = () => {
       <NavLink to="/" className={({ isActive }) => isActive ? "button" : "normal-button"}>
          Home
       </NavLink>
-      {
+      {/* {
          !user && <>
             <NavLink to="/login" className={({ isActive }) => isActive ? "button" : "normal-button"}>Login</NavLink>
             <NavLink to="/signup" className={({ isActive }) => isActive ? "button" : "normal-button"}>Register</NavLink>
          </>
-      }
+      } */}
       {
          (!role || role === 'user' || !user) && <button disabled={!user}><NavLink disabled={!user?.email} to="/create-store" className={({ isActive }) => isActive ? "button" : "normal-button"}>Create-Store</NavLink></button>
       }

@@ -9,10 +9,18 @@ import { imageUpload } from '../../api/utilities';
 import { useNavigate } from 'react-router-dom';
 import { addShop } from '../../api/shop';
 import Helmat from '../../components/Helmat/Helmat';
+import useRole from '../../hooks/useRole';
 
 const CreateStore = () => {
    const { user } = useAuth()
+   const { role } = useRole()
    const navigate = useNavigate()
+
+   React.useEffect(() => {
+      if (role === "admin" || role === "manager") {
+         return navigate("/dashboard")
+      }
+   }, [role, navigate])
 
    const handleSubmit = async (event) => {
       event.preventDefault();

@@ -1,6 +1,8 @@
 import SectionTitle from "../../../../components/SectionTitle/SectionTitle";
-
+import AOS from 'aos';
 const WhyChooseUs = () => {
+
+   AOS.init();
 
    return (
       <div className="bg-gray-100 dark:bg-gray-800">
@@ -12,10 +14,10 @@ const WhyChooseUs = () => {
                </p>
             </div>
 
-            <div className="relative mx-auto max-w-7xl z-10 grid grid-cols-1 gap-10 pt-14 sm:grid-cols-2 lg:grid-cols-3">
+            <div data-aos="zoom-in" className="relative mx-auto max-w-7xl z-10 grid grid-cols-1 gap-10 pt-14 sm:grid-cols-2 lg:grid-cols-3">
                <div className="rounded-md border p-8 text-center shadow-[rgba(50,50,93,0.25)_0px_6px_12px_-2px,_rgba(0,0,0,0.3)_0px_3px_7px_-3px] shadow-gray-500 bg-white">
                   <div
-                     className="button-text mx-auto flex h-12 w-12 items-center justify-center rounded-md border"
+                     className="button-text text-white mx-auto flex h-12 w-12 items-center justify-center rounded-md border"
                      style={{
                         backgroundImage:
                            'linear-gradient(rgb(80, 70, 229) 0%, rgb(43, 49, 203) 100%)',
@@ -49,7 +51,7 @@ const WhyChooseUs = () => {
 
                <div className="rounded-md border p-8 text-center shadow-[rgba(50,50,93,0.25)_0px_6px_12px_-2px,_rgba(0,0,0,0.3)_0px_3px_7px_-3px] shadow-gray-500 bg-white">
                   <div
-                     className="button-text mx-auto flex h-12 w-12 items-center justify-center rounded-md border"
+                     className="button-text text-white mx-auto flex h-12 w-12 items-center justify-center rounded-md border"
                      style={{
                         backgroundImage:
                            'linear-gradient(rgb(80, 70, 229) 0%, rgb(43, 49, 203) 100%)',
@@ -80,7 +82,7 @@ const WhyChooseUs = () => {
 
                <div className="rounded-md border p-8 text-center shadow-[rgba(50,50,93,0.25)_0px_6px_12px_-2px,_rgba(0,0,0,0.3)_0px_3px_7px_-3px] shadow-gray-500 bg-white">
                   <div
-                     className="button-text mx-auto flex h-12 w-12 items-center justify-center rounded-md border"
+                     className="button-text text-white mx-auto flex h-12 w-12 items-center justify-center rounded-md border"
                      style={{
                         backgroundImage:
                            'linear-gradient(rgb(80, 70, 229) 0%, rgb(43, 49, 203) 100%)',

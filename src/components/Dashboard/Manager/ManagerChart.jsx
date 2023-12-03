@@ -29,7 +29,7 @@ const data2 = [
 const ManagerChart = () => {
    return (
       <div className="chart mt-4 ">
-         <div className="title text-3xl mb-4">Last 6 Months (Revenue)</div>
+         <div className="title text-3xl mb-4">Revenue of this Year</div>
          <ResponsiveContainer width="100%" aspect={3 / 1}>
             <ComposedChart width={730} data={data2} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
                <XAxis dataKey="name" />
