@@ -55,7 +55,7 @@ const CreateStore = () => {
    return (
       <React.Fragment>
          <Helmat title="InventoHub | Create Shop" />
-         <SectionTitle title="Create a Shop" subtitle="Stats your Journey" width="80%" />
+         <SectionTitle title="Create a Shop" subtitle="Stats your Journey" width="60%" />
 
          <Container maxWidth="md" sx={{ backgroundColor: '#F1EFEF', mb: 6 }}>
             <Box component="form" onSubmit={handleSubmit} required sx={{ mt: 1 }}>

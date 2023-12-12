@@ -9,7 +9,7 @@ import WhyChooseUs from "../Components/WhyChooseUs/WhyChooseUs";
 const Home = () => {
 
    return (
-      <>
+      <div className="overflow-hidden">
          <Helmat title="InventoHub || Home" />
          <div className="mt-2">
             <Banner />
@@ -30,7 +30,7 @@ const Home = () => {
             <NewsLetter />
          </div>
 
-      </>
+      </div>
    );
 };
 

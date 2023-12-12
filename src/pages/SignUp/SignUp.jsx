@@ -77,6 +77,7 @@ const SignUp = () => {
                   borderRadius: 2,
                   px: 4,
                   py: 6,
+                  mt: "10%",
                   marginBottom: 8,
                   display: "flex",
                   flexDirection: "column",

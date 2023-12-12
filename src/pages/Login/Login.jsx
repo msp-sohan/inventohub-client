@@ -20,7 +20,8 @@ import Helmat from "../../components/Helmat/Helmat";
 import Loader from "../../components/Shared/Loader";
 
 const Login = () => {
-   const { signIn, loading } = useAuth();
+   const { signIn } = useAuth();
+   const [loading, setLoading] = useState(false)
    const [showPassword, setShowPassword] = useState(false);
    const navigate = useNavigate();
    const location = useLocation();
@@ -34,7 +35,9 @@ const Login = () => {
 
       const email = data.get("email");
       const password = data.get("password");
+      setLoading(true)
       try {
+
          // User Registration
          const result = await signIn(email, password);
          // get token
@@ -50,8 +53,10 @@ const Login = () => {
             navigate(from, { replace: true });
          }
          toast.success('Login Successful');
+         setLoading(false)
       } catch (error) {
          toast.error(error.message);
+         setLoading(false)
       }
    };
 
@@ -69,8 +74,10 @@ const Login = () => {
                   borderRadius: 2,
                   px: 4,
                   py: 6,
+                  mt: "20%",
                   marginBottom: 8,
                   display: "flex",
+                  justifyContent: "center",
                   flexDirection: "column",
                   alignItems: "center",
                }}
