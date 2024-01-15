@@ -22,6 +22,9 @@ import ManagerRoute from './ManagerRoute'
 import Forbidden from '../pages/Forbidden/Forbidden'
 import ProtectedRoute from './ProtectedRoute'
 import DashboardHome from '../pages/Dashboard/DashboardHome/DashboardHome'
+import OurGoal from '../pages/OurGoal/OurGoal'
+import Carrer from '../pages/Carrer/Carrer'
+import MeetOurTeam from '../pages/MeetOurTeam/MeetOurTeam'
 
 export const router = createBrowserRouter([
    {
@@ -40,7 +43,19 @@ export const router = createBrowserRouter([
          {
             path: "/watch-demo",
             element: <WatchDemo></WatchDemo>
-         }
+         },
+         {
+            path: "/our-goal",
+            element: <OurGoal />
+         },
+         {
+            path: "/meetourteam",
+            element: <MeetOurTeam />
+         },
+         {
+            path: "/carrer",
+            element: <Carrer />
+         },
       ],
    },
    {
