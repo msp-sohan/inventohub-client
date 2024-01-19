@@ -24,19 +24,19 @@ const PricingSection = () => {
                         </h2>
                         <ul className="mb-6 lg:self-center">
                            <li className="flex items-center mb-3 font-medium text-gray-500 dark:text-gray-400">
-                              <CheckCircle className="text-blue-600  bg-white mr-2" />
+                              <CheckCircle className="text-blue-600  bg-white mr-2 rounded-full" />
                               <span>Unlimited Products</span>
                            </li>
                            <li className="flex items-center mb-3 font-medium text-gray-500 dark:text-gray-400">
-                              <CheckCircle className="text-blue-600  bg-white mr-2" />
+                              <CheckCircle className="text-blue-600  bg-white mr-2 rounded-full" />
                               <span>Inventory Tracking</span>
                            </li>
                            <li className="flex items-center mb-3 font-medium text-gray-500 dark:text-gray-400">
-                              <CheckCircle className="text-blue-600  bg-white mr-2" />
+                              <CheckCircle className="text-blue-600  bg-white mr-2 rounded-full" />
                               <span>Basic Reporting</span>
                            </li>
                            <li className="flex items-center font-medium text-gray-500 dark:text-gray-400">
-                              <CheckCircle className="text-blue-600  bg-white mr-2" />
+                              <CheckCircle className="text-blue-600  bg-white mr-2 rounded-full" />
                               <span>Order Management</span>
                            </li>
                         </ul>
@@ -70,19 +70,19 @@ const PricingSection = () => {
                         </h2>
                         <ul className="mb-6 lg:self-center">
                            <li className="flex items-center mb-3 font-medium text-gray-500 dark:text-gray-400">
-                              <CheckCircle className="text-blue-600  bg-white mr-2" />
+                              <CheckCircle className="text-blue-600  bg-white mr-2 rounded-full" />
                               <span>Real-time  Tracking</span>
                            </li>
                            <li className="flex items-center mb-3 font-medium text-gray-500 dark:text-gray-400">
-                              <CheckCircle className="text-blue-600  bg-white mr-2" />
+                              <CheckCircle className="text-blue-600  bg-white mr-2 rounded-full" />
                               <span>Email Alerts for Low Stock</span>
                            </li>
                            <li className="flex items-center mb-3 font-medium text-gray-500 dark:text-gray-400">
-                              <CheckCircle className="text-blue-600  bg-white mr-2" />
+                              <CheckCircle className="text-blue-600  bg-white mr-2 rounded-full" />
                               <span>Cloud Storage for Backup</span>
                            </li>
                            <li className="flex items-center font-medium text-gray-500 dark:text-gray-400">
-                              <CheckCircle className="text-blue-600  bg-white mr-2" />
+                              <CheckCircle className="text-blue-600  bg-white mr-2 rounded-full" />
                               <span>Multi-user Collaboration</span>
                            </li>
                         </ul>
@@ -117,19 +117,19 @@ const PricingSection = () => {
                         </h2>
                         <ul className="mb-6 lg:self-center">
                            <li className="flex items-center mb-3 font-medium text-gray-500 dark:text-gray-400">
-                              <CheckCircle className="text-blue-600  bg-white mr-2" />
+                              <CheckCircle className="text-blue-600  bg-white mr-2 rounded-full" />
                               <span>Real-time  Tracking</span>
                            </li>
                            <li className="flex items-center mb-3 font-medium text-gray-500 dark:text-gray-400">
-                              <CheckCircle className="text-blue-600  bg-white mr-2" />
+                              <CheckCircle className="text-blue-600  bg-white mr-2 rounded-full" />
                               <span>Email Alerts for Low Stock</span>
                            </li>
                            <li className="flex items-center mb-3 font-medium text-gray-500 dark:text-gray-400">
-                              <CheckCircle className="text-blue-600  bg-white mr-2" />
+                              <CheckCircle className="text-blue-600  bg-white mr-2 rounded-full" />
                               <span>Cloud Storage for Backup</span>
                            </li>
                            <li className="flex items-center font-medium text-gray-500 dark:text-gray-400">
-                              <CheckCircle className="text-blue-600  bg-white mr-2" />
+                              <CheckCircle className="text-blue-600  bg-white mr-2 rounded-full" />
                               <span>Multi-user Collaboration</span>
                            </li>
                         </ul>

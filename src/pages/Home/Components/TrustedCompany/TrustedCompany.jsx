@@ -4,7 +4,7 @@ const TrustedCompany = () => {
       <>
          <div className="container pt-10 pb-10  shadow-[0_3px_10px_rgb(0,0,0,0.2)] drop-shadow-md shadow-gray-500  overflow-hidden bg-gray-100 dark:bg-gray-800 px-3">
             <section className="">
-               <h2 className="mb-12 text-center text-3xl font-bold">
+               <h2 className="mb-12 text-center dark:text-white text-3xl font-bold">
                   Trusted by <u className="">the best</u> companies
                </h2>
 
@@ -19,7 +19,7 @@ const TrustedCompany = () => {
                                     alt="Trendy Pants and Shoes" className="mb-6 dark:brightness-150 lg:mb-0" />
                               </div>
                               <div className="flex-basis w-full shrink-0 grow-0 px-3 lg:w-7/12">
-                                 <h5 className="mb-4 font-bold">Mattle</h5>
+                                 <h5 className="mb-4 font-bold dark:text-white">Mattle</h5>
                                  <ul className="mb-0 flex list-inside flex-row">
                                     <a href="#!" className="pr-2">
                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-neutral-500 dark:text-neutral-300"
@@ -59,7 +59,7 @@ const TrustedCompany = () => {
                                     alt="Trendy Pants and Shoes" className="mb-6 dark:brightness-150 lg:mb-0" />
                               </div>
                               <div className="flex-basis w-full shrink-0 grow-0 px-3 lg:w-7/12">
-                                 <h5 className="mb-4 font-bold">Coutiquee</h5>
+                                 <h5 className="mb-4 font-bold dark:text-white">Coutiquee</h5>
                                  <ul className="mb-0 flex list-inside flex-row">
                                     <a href="#!" className="pr-2">
                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-neutral-500 dark:text-neutral-300"
@@ -99,7 +99,7 @@ const TrustedCompany = () => {
                                     alt="Trendy Pants and Shoes" className="mb-6 dark:brightness-150 lg:mb-0" />
                               </div>
                               <div className="flex-basis w-full shrink-0 grow-0 px-3 lg:w-7/12">
-                                 <h5 className="mb-4 font-bold">Bpoint</h5>
+                                 <h5 className="mb-4 font-bold dark:text-white">Bpoint</h5>
                                  <ul className="mb-0 flex list-inside flex-row">
                                     <a href="#!" className="pr-2">
                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-neutral-500 dark:text-neutral-300"

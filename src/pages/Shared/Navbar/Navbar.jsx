@@ -1,4 +1,3 @@
-import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -13,25 +12,27 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import LogoutIcon from '@mui/icons-material/Logout';
-import { Login, Person2 } from '@mui/icons-material';
+import { DarkMode, LightMode, Login, Person2 } from '@mui/icons-material';
 import useAuth from '../../../hooks/useAuth';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import Logo from '../../../components/Logo/Logo';
 // import Loader from '../../../components/Shared/Loader';
 import useRole from '../../../hooks/useRole';
 import toast from 'react-hot-toast';
+import { useEffect, useState } from 'react';
 
 const userIcon = 'https://i.ibb.co/6HtdFTk/585e4bf3cb11b227491c339a.png'
 const shopLogo = 'https://i.ibb.co/PFhTpK2/Invebto-Hub-2.png'
 
 const Navbar = () => {
+
    const { user, logOut } = useAuth({})
    const navigate = useNavigate()
 
    const { role, } = useRole()
 
-   const [anchorElNav, setAnchorElNav] = React.useState(null);
-   const [anchorElUser, setAnchorElUser] = React.useState(null);
+   const [anchorElNav, setAnchorElNav] = useState(null);
+   const [anchorElUser, setAnchorElUser] = useState(null);
 
    const handleOpenNavMenu = (event) => {
       setAnchorElNav(event.currentTarget);
@@ -88,10 +89,27 @@ const Navbar = () => {
       <NavLink to="/watch-demo" className={({ isActive }) => isActive ? "button" : "normal-button"}>Watch Demo</NavLink>
    </>
    // =======================================================================
+   const [theme, setTheme] = useState("light");
 
+   useEffect(() => {
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme) {
+         setTheme(savedTheme);
+      }
+   }, []);
+
+   useEffect(() => {
+      document.documentElement.classList.remove('light', 'dark');
+      document.documentElement.classList.add(theme);
+      localStorage.setItem('theme', theme);
+   }, [theme]);
+
+   const handleThemeSwitch = () => {
+      setTheme((prevTheme) => (prevTheme === "dark" ? "light" : "dark"));
+   };
 
    return (
-      <AppBar sx={{ backgroundColor: '#387ae8' }} position="sticky">
+      <AppBar sx={{ backgroundColor: '#387ae8', }} position="sticky">
          <Container maxWidth="xl">
             <Toolbar disableGutters>
                <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
@@ -141,55 +159,60 @@ const Navbar = () => {
                   </ul>
                </Box>
 
-               <Box sx={{ flexGrow: 0 }}>
-                  <Tooltip title="Open Profile">
-                     <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                        <Avatar alt="User Pic" src={user?.photoURL ? user?.photoURL : userIcon} />
-                     </IconButton>
-                  </Tooltip>
-                  <Menu
-                     sx={{ mt: '45px' }}
-                     id="menu-appbar"
-                     anchorEl={anchorElUser}
-                     anchorOrigin={{
-                        vertical: 'top',
-                        horizontal: 'right',
-                     }}
-                     keepMounted
-                     transformOrigin={{
-                        vertical: 'top',
-                        horizontal: 'right',
-                     }}
-                     open={Boolean(anchorElUser)}
-                     onClose={handleCloseUserMenu}
-                  >
-                     {
-                        user && user?.email ? <MenuItem sx={{ display: 'block' }} onClick={handleCloseUserMenu}>
-                           <Typography sx={{ paddingLeft: '5px', display: 'flex', justifyContent: 'center', alignItems: 'center' }} textAlign="center"><Person2 /> <span className='pl-3'>{user?.displayName}</span></Typography>
-                           <Button
-                              onClick={handleLogout}
-                              sx={{
-                                 display: 'flex',
-                                 justifyContent: 'start',
-                                 alignItems: 'center',
-                                 color: 'red',
-                                 fontWeight: '600',
-                                 width: '100%',
-                                 '&:hover': {
-                                    backgroundColor: '#001B79',
-                                 },
-                                 marginTop: '5px'
-                              }}
-                           >
-                              <LogoutIcon />
-                              <span className='pl-2'>LogOut</span>
-                           </Button>
-                        </MenuItem> : <MenuItem sx={{ display: 'grid' }} onClick={handleCloseUserMenu}>
-                           <Link to="/login" className='hover:bg-[#001B79] rounded-md'><Button sx={{ ":hover": { color: 'white' } }}><Login sx={{ mr: 1 }}></Login>Login</Button></Link>
-                           <Link to="/signup" className='hover:bg-[#001B79] rounded-md'><Button sx={{ ":hover": { color: 'white' } }}><PersonAddIcon sx={{ mr: 1 }} />Register</Button></Link>
-                        </MenuItem>
-                     }
-                  </Menu>
+               <Box sx={{ display: "flex", justifyContent: 'center', alignItems: 'center', gap: 2 }}>
+                  <IconButton onClick={handleThemeSwitch} sx={{ backgroundColor: 'white' }}>
+                     {theme === "dark" ? <DarkMode /> : <LightMode />}
+                  </IconButton>
+                  <Box sx={{ flexGrow: 0 }}>
+                     <Tooltip title="Open Profile">
+                        <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                           <Avatar alt="User Pic" src={user?.photoURL ? user?.photoURL : userIcon} />
+                        </IconButton>
+                     </Tooltip>
+                     <Menu
+                        sx={{ mt: '45px' }}
+                        id="menu-appbar"
+                        anchorEl={anchorElUser}
+                        anchorOrigin={{
+                           vertical: 'top',
+                           horizontal: 'right',
+                        }}
+                        keepMounted
+                        transformOrigin={{
+                           vertical: 'top',
+                           horizontal: 'right',
+                        }}
+                        open={Boolean(anchorElUser)}
+                        onClose={handleCloseUserMenu}
+                     >
+                        {
+                           user && user?.email ? <MenuItem sx={{ display: 'block' }} onClick={handleCloseUserMenu}>
+                              <Typography sx={{ paddingLeft: '5px', display: 'flex', justifyContent: 'center', alignItems: 'center' }} textAlign="center"><Person2 /> <span className='pl-3'>{user?.displayName}</span></Typography>
+                              <Button
+                                 onClick={handleLogout}
+                                 sx={{
+                                    display: 'flex',
+                                    justifyContent: 'start',
+                                    alignItems: 'center',
+                                    color: 'red',
+                                    fontWeight: '600',
+                                    width: '100%',
+                                    '&:hover': {
+                                       backgroundColor: '#001B79',
+                                    },
+                                    marginTop: '5px'
+                                 }}
+                              >
+                                 <LogoutIcon />
+                                 <span className='pl-2'>LogOut</span>
+                              </Button>
+                           </MenuItem> : <MenuItem sx={{ display: 'grid' }} onClick={handleCloseUserMenu}>
+                              <Link to="/login" className='hover:bg-[#001B79] rounded-md'><Button sx={{ ":hover": { color: 'white' } }}><Login sx={{ mr: 1 }}></Login>Login</Button></Link>
+                              <Link to="/signup" className='hover:bg-[#001B79] rounded-md'><Button sx={{ ":hover": { color: 'white' } }}><PersonAddIcon sx={{ mr: 1 }} />Register</Button></Link>
+                           </MenuItem>
+                        }
+                     </Menu>
+                  </Box>
                </Box>
             </Toolbar>
          </Container>

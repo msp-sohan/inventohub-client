@@ -9,7 +9,7 @@ const WhyChooseUs = () => {
          <section id="features" className="relative block px-6 pb-10 md:px-10  border-t border-b shadow-[0_3px_10px_rgb(0,0,0,0.2)] drop-shadow-2xl">
             <div className="relative mx-auto max-w-5xl text-center">
                <SectionTitle title="Powerful Inventory Management" subtitle="Why choose us" />
-               <p className="mx-auto my-4 w-full max-w-xl bg-transparent text-center font-medium leading-relaxed tracking-wide ">
+               <p className="mx-auto my-4 dark:text-gray-400 w-full max-w-xl bg-transparent text-center font-medium leading-relaxed tracking-wide ">
                   Our platform provides advanced inventory management features with an easy-to-use interface. No technical skills required – manage your inventory effortlessly.
                </p>
             </div>
