@@ -40,3 +40,13 @@ Visit the live Site: [InventoHub](https://inventohub.netlify.app)
 -  **State Management:** Context API
 -  **Styling:** CSS, Tailwind Css, Material UI
 -  **Deployment:** Vercel, Netlify. -->
+
+<!-- ## Technology Stack
+
+-  **Frontend:** React.js
+-  **Backend:** Node.js, Express.js, Mongoose
+-  **Database:** MongoDB
+-  **Authentication:** JSON Web Tokens (JWT)
+-  **State Management:** Context API
+-  **Styling:** CSS, Tailwind Css, Material UI
+-  **Deployment:** Vercel, Netlify. -->
