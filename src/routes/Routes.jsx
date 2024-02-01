@@ -10,7 +10,6 @@ import CreateStore from '../pages/CreateStore/CreateStore'
 import PrivateRoute from './PrivateRoute'
 import SaleSummary from '../pages/Dashboard/Admin/SaleSummary'
 import ManageShops from '../pages/Dashboard/Admin/ManageShops'
-// import ManageUsers from '../pages/Dashboard/Admin/ManageUsers'
 import ManageProduct from '../pages/Dashboard/ShopManager/ManageProduct'
 import AddProduct from '../pages/Dashboard/ShopManager/AddProduct'
 import SalesCollection from '../pages/Dashboard/ShopManager/SalesCollection'
@@ -23,8 +22,9 @@ import Forbidden from '../pages/Forbidden/Forbidden'
 import ProtectedRoute from './ProtectedRoute'
 import DashboardHome from '../pages/Dashboard/DashboardHome/DashboardHome'
 import OurGoal from '../pages/OurGoal/OurGoal'
-import Carrer from '../pages/Carrer/Carrer'
 import MeetOurTeam from '../pages/MeetOurTeam/MeetOurTeam'
+import FAQ from '../pages/FAQ/FAQ'
+
 
 export const router = createBrowserRouter([
    {
@@ -53,8 +53,8 @@ export const router = createBrowserRouter([
             element: <MeetOurTeam />
          },
          {
-            path: "/carrer",
-            element: <Carrer />
+            path: "/faq",
+            element: <FAQ />
          },
       ],
    },

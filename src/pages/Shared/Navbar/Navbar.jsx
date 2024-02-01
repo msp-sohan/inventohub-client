@@ -85,7 +85,7 @@ const Navbar = () => {
       }
       <NavLink to="/our-goal" className={({ isActive }) => isActive ? "button" : "normal-button"}>Our Goal</NavLink>
       <NavLink to="/meetourteam" className={({ isActive }) => isActive ? "button" : "normal-button"}>Meet Our Team</NavLink>
-      <NavLink to="/carrer" className={({ isActive }) => isActive ? "button" : "normal-button"}>Career</NavLink>
+      <NavLink to="/faq" className={({ isActive }) => isActive ? "button" : "normal-button"}>FAQ</NavLink>
       <NavLink to="/watch-demo" className={({ isActive }) => isActive ? "button" : "normal-button"}>Watch Demo</NavLink>
    </>
    // =======================================================================
