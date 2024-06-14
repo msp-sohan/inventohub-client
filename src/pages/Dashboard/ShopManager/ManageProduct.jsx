@@ -73,7 +73,7 @@ const ManageProduct = () => {
          <div className="mx-auto max-w-full py-8">
             <div className="flex items-center justify-between border-y-2 mb-8">
                <div>
-                  <h2 className="font-semibold text-gray-700">Total {products?.length} Product Added</h2>
+                  <h2 className="font-semibold text-gray-700 dark:text-gray-200">Total {products?.length} Product Added</h2>
                </div>
                <div className="flex items-center justify-between">
                   <div className="ml-10 space-x-8 lg:ml-40">
@@ -154,10 +154,10 @@ const ManageProduct = () => {
 
             </div> */}
             {/* ==================== */}
-            <div className="mt-12 grid grid-cols-1 overflow-x-auto">
+            <div className="mt-12 grid grid-cols-1 overflow-x-auto ">
                <table className="w-full divide-y border rounded divide-gray-200 overflow-x-auto">
-                  <thead className="bg-blue-300 text-black">
-                     <tr className="bg-blue-600 text-left text-xs font-semibold uppercase tracking-widest text-white">
+                  <thead className="bg-blue-300 text-black ">
+                     <tr className="bg-blue-600  text-left text-xs font-semibold uppercase tracking-widest text-white ">
                         <th className="px-3 py-3">ID</th>
                         <th className="px-3 py-3">Product Image</th>
                         <th className="px-3 py-3">Product Name </th>
@@ -168,28 +168,28 @@ const ManageProduct = () => {
                   </thead>
                   {
                      !products?.length ? "" : <tbody className="text-gray-500 ">
-                        {products?.map((product, index) => <tr key={product._id} className='overflow-hidden'>
-                           <td className="border-b  border-gray-200 bg-white px-3 py-3 text-sm">
-                              <p className="whitespace-no-wrap">{index + 1}</p>
+                        {products?.map((product, index) => <tr key={product._id} className='overflow-hidden '>
+                           <td className="border-b  border-gray-200  px-3 py-3 text-sm">
+                              <p className="whitespace-no-wrap dark:text-gray-200">{index + 1}</p>
                            </td>
-                           <td className="border-b border-gray-200 bg-white px-3 py-3 text-sm">
+                           <td className="border-b border-gray-200  px-3 py-3 text-sm">
                               <div className="flex items-center">
                                  <div className="w-20 h-20 rounded bg-slate-200 flex-shrink-0">
-                                    <img className="h-full w-full" src={product?.productImage} alt="" />
+                                    <img className="h-full w-full dark:text-gray-200" src={product?.productImage} alt="" />
                                  </div>
                               </div>
                            </td>
-                           <td className="border-b border-gray-200 bg-white px-3 py-3 text-sm">
-                              <p className="whitespace-no-wrap">{product?.productName}</p>
+                           <td className="border-b border-gray-200  px-3 py-3 text-sm">
+                              <p className="whitespace-no-wrap dark:text-gray-200">{product?.productName}</p>
                            </td>
-                           <td className="border-b border-gray-200 bg-white px-3 py-3 text-sm">
-                              <p className="whitespace-no-wrap">{product?.productQuantity}</p>
+                           <td className="border-b border-gray-200  px-3 py-3 text-sm">
+                              <p className="whitespace-no-wrap dark:text-gray-200">{product?.productQuantity}</p>
                            </td>
-                           <td className="border-b border-gray-200 bg-white px-3 py-3 text-sm">
-                              <p className="whitespace-no-wrap">{product?.saleCount}</p>
+                           <td className="border-b border-gray-200  px-3 py-3 text-sm">
+                              <p className="whitespace-no-wrap dark:text-gray-200">{product?.saleCount}</p>
                            </td>
 
-                           <td className="border border-gray-200 bg-white py-3 text-sm">
+                           <td className="border border-gray-200  py-3 text-sm">
                               <div className='flex items-center justify-center gap-1'>
                                  <button onClick={() => handleOpen(product)} className="inline-flex items-center justify-center w-10 h-10 mr-2 text-pink-100 transition-colors duration-150 bg-green-700 rounded-lg focus:shadow-outline hover:bg-green-900">
                                     <BorderColorTwoToneIcon />
@@ -206,11 +206,11 @@ const ManageProduct = () => {
             </div>
             {/* ==================== */}
             {/* Table End */}
-            <div className="flex flex-col items-center border-t bg-white px-3 py-3 sm:flex-row sm:justify-between">
-               <span className="text-xs text-gray-600 sm:text-sm"> Showing {products?.length} to {products?.length} of {products?.length} Entries </span>
+            <div className="flex flex-col items-center border-t  px-3 py-3 sm:flex-row sm:justify-between ">
+               <span className="text-xs text-gray-600 dark:text-gray-200 sm:text-sm"> Showing {products?.length} to {products?.length} of {products?.length} Entries </span>
                <div className="mt-2 inline-flex sm:mt-0">
-                  <button className="mr-2 h-12 w-12 rounded-full border text-sm font-semibold text-gray-600 transition duration-150 hover:bg-gray-100">Prev</button>
-                  <button className="h-12 w-12 rounded-full border text-sm font-semibold text-gray-600 transition duration-150 hover:bg-gray-100">Next</button>
+                  <button className="mr-2 h-12 w-12 rounded-full border text-sm font-semibold text-gray-600 dark:text-gray-200 transition duration-150 hover:bg-gray-100">Prev</button>
+                  <button className="h-12 w-12 rounded-full border text-sm font-semibold text-gray-600 dark:text-gray-200 transition duration-150 hover:bg-gray-100">Next</button>
                </div>
             </div>
          </div>

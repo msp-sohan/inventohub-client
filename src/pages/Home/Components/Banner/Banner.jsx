@@ -32,7 +32,7 @@ const Banner = () => {
             className="mySwiper"
          >
             <SwiperSlide>
-               <div className="py-20 dark:bg-gray-700">
+               <div className="py-20 relative overflow-hidden bg-white dark:bg-gray-800">
                   <div className="max-w-6xl mx-auto md:px-0 font-poppins">
                      <div className="flex flex-wrap items-center px-4">
                         <div className="w-full px-4 mb-16 md:w-1/2 md:mb-0">

@@ -22,7 +22,7 @@ const Copyright = () => {
 
    return (
       <div className="relative">
-         <div className="py-6 text-sm font-semibold text-center bg-blue-500 dark:text-gray-400">
+         <div className="py-6 text-sm font-semibold text-center bg-blue-500 dark:text-gray-200">
             © {new Date().getFullYear()} <Link to="/" className="hover:text-white">InventoHub</Link>. All rights reserved.
          </div>
          {showArrow && (

@@ -14,17 +14,20 @@ const purchaseCardData = [
 
 const Subscription = () => {
    let [isOpen, setIsOpen] = useState(false)
-   const [paymentInfo, setPaymenttInfo] = useState(0)
+   const [paymentInfo, setPaymentInfo] = useState(0)
    const closeModal = () => {
       setIsOpen(false)
    }
    AOS.init();
 
    const handlePrice = (cardData) => {
-      setPaymenttInfo(cardData)
+      setPaymentInfo(cardData)
       setIsOpen(true)
    }
 
+   const handleAddAllSales = () => { };
+   const checkouts = { };
+   const genPDF = () => {  };
 
    return (
       <>
@@ -34,7 +37,7 @@ const Subscription = () => {
                <SectionTitle title="By Subscription, Increse your product Limit" subtitle="Choose a Plan" width="80%" />
                <div data-aos="zoom-in" className="flex flex-wrap justify-center -mx-3">
                   {
-                     purchaseCardData.map(cardData =>
+                     purchaseCardData?.map(cardData =>
                         <div key={cardData.price} className="w-full px-3 mb-6 md:w-96 lg:w-1/2 xl:w-1/3">
                            <div className="flex flex-col items-center rounded-md shadow-md dark:bg-gray-800 bg-gray-50">
                               <div className="flex justify-center w-full bg-blue-100 rounded-b-full dark:bg-gray-700">
@@ -81,7 +84,7 @@ const Subscription = () => {
                </div>
             </div>
          </section>
-         <PurchaseModal isOpen={isOpen} closeModal={closeModal} paymentInfo={paymentInfo}></PurchaseModal>
+         <PurchaseModal isOpen={isOpen} closeModal={closeModal} paymentInfo={paymentInfo} handleAddAllSales={handleAddAllSales} genPDF={genPDF} checkouts={checkouts} ></PurchaseModal>
       </>
    );
 };

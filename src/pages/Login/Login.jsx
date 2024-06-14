@@ -26,15 +26,18 @@ const Login = () => {
    const navigate = useNavigate();
    const location = useLocation();
    const from = location?.state?.from?.pathname || '/';
+   const [email, setEmail] = useState('');
+   const [password, setPassword] = useState('');
+
+   //  const handleInput = event => {
+   //    setUserInput(event.target.value);
+   //    setPassInput(event.target.value);
+   //  };
 
    const handleClickShowPassword = () => setShowPassword((show) => !show);
 
    const handleSubmit = async (event) => {
       event.preventDefault();
-      const data = new FormData(event.currentTarget);
-
-      const email = data.get("email");
-      const password = data.get("password");
       setLoading(true)
       try {
 
@@ -95,6 +98,8 @@ const Login = () => {
                      name="email"
                      autoComplete="email"
                      autoFocus
+                     value={email}
+                     onChange={(e)=>setEmail(e.target.value)}
                   />
                   <FormControl margin="normal" fullWidth variant="outlined">
                      <InputLabel htmlFor="outlined-adornment-password">Password*</InputLabel>
@@ -104,6 +109,8 @@ const Login = () => {
                         name="password"
                         id="outlined-adornment-password"
                         type={showPassword ? 'text' : 'password'}
+                        value={password}
+                        onChange={(e)=>setPassword(e.target.value)}
                         endAdornment={
                            <InputAdornment position="end">
                               <IconButton
@@ -140,6 +147,15 @@ const Login = () => {
                   >
 
                      {loading ? <TbFidgetSpinner className='animate-spin mx-auto' /> : "Sign In"}
+                  </Button>
+                  {/* manager login */}
+                  <Button
+                  onClick={()=>{setEmail("manager@gmail.com"), setPassword("1111A!a1")}}
+                     fullWidth
+                     variant="contained"
+                     sx={{ backgroundColor: "#001B7d",mt: 2, mb: 1, fontSize: '18px', ":hover": { backgroundColor: '#2d1B00', scale: '1.01' } }}
+                  >
+                     Sign in as Manager
                   </Button>
                   <Typography component="h5" variant="p" sx={{ display: "flex", justifyContent: 'center' }}>
                      OR

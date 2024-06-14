@@ -5,6 +5,7 @@ import { createPaymentIntent, updatelimit } from '../../../../api/payment';
 import useAuth from '../../../../hooks/useAuth';
 import toast from 'react-hot-toast';
 import { TbFidgetSpinner } from 'react-icons/tb';
+import Swal from 'sweetalert2';
 
 const CheckoutForm = ({ closeModal, paymentInfo, handleAddAllSales, genPDF }) => {
    const stripe = useStripe();
@@ -15,10 +16,10 @@ const CheckoutForm = ({ closeModal, paymentInfo, handleAddAllSales, genPDF }) =>
 
    // Create Payment Intent
    useEffect(() => {
-      if (paymentInfo.price > 0) {
-         createPaymentIntent({ price: paymentInfo.price })
+      if (paymentInfo?.price > 0) {
+         createPaymentIntent({ price: paymentInfo?.price })
             .then(data => {
-               setClientSecret(data.clientSecret)
+               setClientSecret(data?.clientSecret)
             })
       }
    }, [paymentInfo?.price])
@@ -31,7 +32,6 @@ const CheckoutForm = ({ closeModal, paymentInfo, handleAddAllSales, genPDF }) =>
       }
 
       const card = elements.getElement(CardElement);
-
       if (card == null) {
          return;
       }
@@ -47,8 +47,8 @@ const CheckoutForm = ({ closeModal, paymentInfo, handleAddAllSales, genPDF }) =>
       } else {
          console.log('[PaymentMethod]', paymentMethod);
       }
-
       setProcessing(true)
+
       // Payment Cutting
       const { paymentIntent, error: confirmError } =
          await stripe.confirmCardPayment(clientSecret, {
@@ -63,18 +63,19 @@ const CheckoutForm = ({ closeModal, paymentInfo, handleAddAllSales, genPDF }) =>
 
       if (confirmError) {
          toast.error(confirmError.message)
+         setProcessing(false)
       } else {
-         console.log('payment intent', paymentIntent)
-         if (paymentIntent.status === 'succeeded') {
+         if (paymentIntent?.status === 'succeeded') {
             try {
                await updatelimit(user?.email, paymentInfo)
-               const text = `Payment successfull! ${paymentIntent.id}`
+               const text = `Payment successfull! ${paymentIntent?.id}`
                toast.success(text)
                handleAddAllSales()
                genPDF()
                closeModal()
             } catch (error) {
                toast.error(error.message)
+               setProcessing(false)
             } finally {
                setProcessing(false)
             }

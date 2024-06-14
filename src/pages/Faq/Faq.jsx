@@ -1,5 +1,5 @@
 
-const FAQ = () => {
+export const FAQ = () => {
    return (
       <>
          <section className="flex items-center bg-white xl:h-screen dark:bg-gray-800 font-poppins">
@@ -152,5 +152,3 @@ const FAQ = () => {
       </>
    );
 };
-
-export default FAQ;

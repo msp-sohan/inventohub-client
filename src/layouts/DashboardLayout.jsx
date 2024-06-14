@@ -20,6 +20,7 @@ import Helmat from '../components/Helmat/Helmat';
 import useRole from '../hooks/useRole';
 import useAllShops from '../hooks/useAllShops';
 import toast from 'react-hot-toast';
+import ToogleTheme from '../components/ToogleTheme/ToogleTheme';
 
 const drawerWidth = 240;
 const shopLogo = 'https://i.ibb.co/PFhTpK2/Invebto-Hub-2.png'
@@ -50,11 +51,11 @@ const DashboardLayout = (props) => {
    };
 
    const drawer = (
-      <div style={{ display: 'flex', flexDirection: 'column', height: '100%', marginBottom: '20px' }}>
+      <div className='dark:bg-gray-800 ' style={{ display: 'flex', flexDirection: 'column', height: '100vh', marginBottom: '20px' }}>
          {/* Remove the unnecessary Toolbar component here */}
          <img src={shopUser?.shopLogo ? shopUser?.shopLogo : shopLogo} alt="" className='w-[80%] max-h-16' />
          <Divider />
-         <List sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+         <List sx={{ display: 'flex', flexDirection: 'column', gap: 1, color: 'white' }} className='dark:text-white'>
             {role === 'manager' && <ManagerMenu />}
             {role === 'admin' && <AdminMenu />}
          </List>
@@ -66,8 +67,8 @@ const DashboardLayout = (props) => {
          </div>
          <div>
             <hr />
-            <button onClick={handleLogout} className='flex items-center px-4 py-2 mt-5 text-gray-600 hover:bg-gray-300 hover:text-gray-700 transition-colors duration-300 transform'>
-               <Logout className='w-5 h-5' />
+            <button onClick={handleLogout} className='flex items-center w-full px-4 py-2 mt-5 text-gray-600 dark:text-white hover:bg-gray-300 hover:text-gray-700 transition-colors duration-300 transform'>
+               <Logout className='w-full h-5' />
                <span className='mx-4 font-medium'>Logout</span>
             </button>
          </div>
@@ -100,19 +101,20 @@ const DashboardLayout = (props) => {
                   {/* Small Device */}
                   {drawer}
                </Drawer>
-               <Drawer
-                  variant="persistent"
+               <Drawer variant="persistent"
                   open
                   sx={{ display: { xs: 'none', sm: 'block' }, '& .MuiDrawer-paper': { boxSizing: 'border-box', } }} >
                   {/* Large Devie */}
                   {drawer}
                </Drawer>
+   
             </Box>
             <Box component="main" sx={{ flexGrow: 1, width: { sm: '100%', md: `calc(100% - ${drawerWidth}px)` } }} >
                <Toolbar />
-               <div className='min-h-[calc(100vh-16vh)] p-3 lg:p-6'>
+               <div className='min-h-[calc(100vh-16vh)] p-3 lg:p-6 dark:bg-gray-800'>
                   <Outlet />
                </div>
+ 
                <Copyright></Copyright>
             </Box>
          </Box>

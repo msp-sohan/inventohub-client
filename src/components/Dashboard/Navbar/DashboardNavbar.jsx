@@ -1,4 +1,3 @@
-import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -16,13 +15,15 @@ import { Login, PersonAdd } from '@mui/icons-material';
 import useAuth from '../../../hooks/useAuth';
 import PersonIcon from '@mui/icons-material/Person';
 import MenuIcon from '@mui/icons-material/Menu';
+import ToogleTheme from '../../ToogleTheme/ToogleTheme';
+import { useState } from 'react';
 
 const userIcon = 'https://i.ibb.co/6HtdFTk/585e4bf3cb11b227491c339a.png';
 
 const DashboardNavbar = ({ handleDrawerToggle }) => {
    const { user, logOut } = useAuth();
 
-   const [anchorElUser, setAnchorElUser] = React.useState(null);
+   const [anchorElUser, setAnchorElUser] = useState(null);
 
    const handleOpenUserMenu = (event) => {
       setAnchorElUser(event.currentTarget);
@@ -33,8 +34,9 @@ const DashboardNavbar = ({ handleDrawerToggle }) => {
    };
 
    return (
-      <AppBar sx={{ backgroundColor: '', zIndex: '0', position: 'absolute' }}>
-         <Container maxWidth={'xl'}>
+      <AppBar sx={{ backgroundColor: '', zIndex: '-0', position: 'absolute' }}>
+         <Container maxWidth={'xl'} sx={{display: 'flex', justifyContent: 'end', alignItems: 'center', gap: '0px'}}>
+            <ToogleTheme/>
             <Toolbar disableGutters sx={{ display: 'flex', justifyContent: 'end' }}>
                <Box sx={{ flexGrow: 1 }}>
                   <Toolbar>

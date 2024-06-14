@@ -23,7 +23,7 @@ import ProtectedRoute from './ProtectedRoute'
 import DashboardHome from '../pages/Dashboard/DashboardHome/DashboardHome'
 import OurGoal from '../pages/OurGoal/OurGoal'
 import MeetOurTeam from '../pages/MeetOurTeam/MeetOurTeam'
-import FAQ from '../pages/FAQ/FAQ'
+import { FAQ } from '../pages/Faq/Faq'
 
 
 export const router = createBrowserRouter([

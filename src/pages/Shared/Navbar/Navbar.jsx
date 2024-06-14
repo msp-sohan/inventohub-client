@@ -20,6 +20,7 @@ import Logo from '../../../components/Logo/Logo';
 import useRole from '../../../hooks/useRole';
 import toast from 'react-hot-toast';
 import { useEffect, useState } from 'react';
+import ToogleTheme from '../../../components/ToogleTheme/ToogleTheme';
 
 const userIcon = 'https://i.ibb.co/6HtdFTk/585e4bf3cb11b227491c339a.png'
 const shopLogo = 'https://i.ibb.co/PFhTpK2/Invebto-Hub-2.png'
@@ -160,9 +161,7 @@ const Navbar = () => {
                </Box>
 
                <Box sx={{ display: "flex", justifyContent: 'center', alignItems: 'center', gap: 2 }}>
-                  <IconButton onClick={handleThemeSwitch} sx={{ backgroundColor: 'white' }}>
-                     {theme === "dark" ? <DarkMode /> : <LightMode />}
-                  </IconButton>
+                  <ToogleTheme/>
                   <Box sx={{ flexGrow: 0 }}>
                      <Tooltip title="Open Profile">
                         <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>

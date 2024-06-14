@@ -52,7 +52,7 @@ const CheckOut = () => {
    //    }
    // }
 
-   const handleCheckout = () => {
+   const handleCheckout = (totalPrice) => {
       setIsOpen(true)
       setPrice(totalPrice)
    }
@@ -65,7 +65,12 @@ const CheckOut = () => {
             icon: "success",
             title: "Get Paid Successfully",
             showConfirmButton: false,
-            timer: 1500
+            timer: 1500,
+            willOpen: () => {
+               Swal.getPopup().style.zIndex = '50';
+               Swal.getPopup().style.position = 'absolute'; 
+               Swal.getPopup().style.top = '75px'; 
+           }
          });
          refetch()
          navigate('/dashboard/sales-collection')
@@ -142,7 +147,7 @@ const CheckOut = () => {
                               <div className="flex flex-wrap">
                                  <p className="mr-4 text-sm font-medium dark:text-gray-400">
                                     <span className="font-medium">Selling Price</span>
-                                    <span className="ml-2 text-gray-400">${item?.sellingPrice}</span>
+                                    <span className="ml-2 text-gray-400">${item?.sellingPrice.toFixed(2)}</span>
                                  </p>
                                  <p className="mr-4 text-sm font-medium dark:text-gray-400">
                                     <span className="font-medium">Discount:</span>
@@ -169,7 +174,7 @@ const CheckOut = () => {
                   }
                </div>
                <div className="max-w-4xl mx-auto ">
-                  <h2 className="mb-4 text-xl font-medium dark:text-gray-400 ">Order Details:</h2>
+                  <h2 className="mb-4 text-xl font-medium dark:text-gray-200 ">Order Details:</h2>
                   <div className="grid grid-cols-1 gap-8 mb-10 lg:grid-cols-3">
                      <div className="relative flex items-center justify-between px-10 py-3 font-medium leading-8 bg-white bg-opacity-50 rounded-md shadow dark:text-gray-400 dark:bg-gray-800">
                         <div className="absolute right-0 flex items-center justify-center bg-blue-500 rounded-md w-14 h-14 dark:bg-gray-600">
@@ -177,9 +182,9 @@ const CheckOut = () => {
                               {checkouts?.length}
                            </div>
                         </div>
-                        <span className="mr-16">Products</span>
+                        <span className="mr-16 dark:text-gray-200">Products</span>
                      </div>
-                     <div className="flex items-center justify-between px-10 py-3 font-medium leading-8 bg-white rounded-md shadow dark:text-gray-400 dark:bg-gray-800 font-heading">
+                     <div className="flex items-center justify-between px-10 py-3 font-medium leading-8 bg-white rounded-md shadow dark:text-gray-200 dark:bg-gray-800  font-heading">
                         <span>Total</span>
                         <span className="flex items-center text-blue-500 dark:text-blue-400">
                            <span className="text-xl">${totalPrice}</span>
@@ -187,7 +192,7 @@ const CheckOut = () => {
                      </div>
 
                      <button className="px-6 w-full  py-3 text-blue-500 border border-blue-500 rounded-md md:w-auto hover:text-gray-100 hover:bg-blue-600 dark:border-gray-800 dark:hover:bg-gray-800 dark:text-gray-300">
-                        <p onClick={() => handleCheckout(checkouts)}>All Get Paid</p>
+                        <p onClick={() => handleCheckout(totalPrice)}>All Get Paid</p>
                      </button>
 
                   </div>

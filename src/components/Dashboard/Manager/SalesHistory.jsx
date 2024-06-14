@@ -37,7 +37,7 @@ const SalesHistory = () => {
             <div className="overflow-x-auto">
                {
                   sortedData?.length === 0 ? <EmptyPage /> : <table id="example" className=" w-full table-auto">
-                     <thead className="text-xl bg-blue-200 text-left">
+                     <thead className="text-xl bg-blue-200 text-left ">
                         <tr>
                            <th className="border border-black px-4 py-2">Ser</th>
                            <th className="border border-black px-4 py-2">Product Name</th>
@@ -47,7 +47,7 @@ const SalesHistory = () => {
                      </thead>
                      <tbody>
                         {sortedData?.map((item, index) => (
-                           <tr key={item?._id}>
+                           <tr key={item?._id} className="dark:text-gray-300">
                               <td className="border px-4 py-2">{index + 1}</td>
                               <td className="border px-4 py-2">{item?.productName}</td>
                               <td className="border px-4 py-2">
@@ -71,6 +71,7 @@ const SalesHistory = () => {
                rowsPerPage={rowsPerPage}
                onRowsPerPageChange={handleChangeRowsPerPage}
                rowsPerPageOptions={[5, 10, 20, 50]}
+               sx={{color: '#858093'}}
             />
          }
       </>
